@@ -5,10 +5,9 @@ import ignore from "ignore";
 import path from "path";
 import { difference, keys, toPairs } from "rambda";
 import { snoflow } from "snoflow";
-
 import { logError } from "./logError";
 import { nil } from "./nil";
-import { noneed } from "./noneed";
+import { noneed } from "./notneed";
 import { wait } from "./wait";
 if (import.meta.main) {
   await bunAuto();

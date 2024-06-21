@@ -1,4 +1,4 @@
-#!bun
+#!/usr/env/bin bun
 
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";

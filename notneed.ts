@@ -32,4 +32,6 @@ async function updateNotNeededPackages() {
     await write(file(path), onlineJson);
     console.log("Not needed packages updated");
   }
+  console.log('done');
+  
 }

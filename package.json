@@ -14,7 +14,8 @@
     "bun-auto": "bun ./cli.ts"
   },
   "files": [
-    "*.ts"
+    "*.ts",
+    "*.json"
   ],
   "scripts": {
     "build": "echo no build step",
