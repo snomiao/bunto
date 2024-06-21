@@ -1,6 +1,6 @@
 {
-  "name": "main",
-  "version": "0.0.0",
+  "name": "bun-auto-install",
+  "version": "0.0.1",
   "author": "snomiao <snomiao@gmail.com>",
   "module": "index.ts",
   "devDependencies": {
@@ -31,5 +31,14 @@
     "test": "bun test"
   },
   "type": "module",
-  "types": "./index.ts"
+  "types": "./index.ts",
+  "dependencies": {
+    "ignore": "^5.3.1",
+    "imports-walk-ts": "^1.0.0",
+    "peek-log": "^0.0.8",
+    "rambda": "^9.2.1",
+    "snoflow": "^1.2.3",
+    "web-streams-extensions": "^0.12.0",
+    "webstream-kernel": "^1.1.4"
+  }
 }
