@@ -65,11 +65,13 @@ export default async function bunAuto() {
     .map(() => fs.readFile("./package.json", "utf-8"))
     .map((s) => wait(() => JSON.parse(s)).catch(logError("[package.json]")))
     .filter()
-    .map((pkg) =>
-      toPairs(pkg)
+    .map((pkg) => {
+      const scripts = JSON.stringify(pkg.scripts)
+      return toPairs(pkg)
         .filter(([key, depObj]) => key.match(/dependencies$/i))
         .flatMap(([k, depObj]) => keys(depObj) as string[])
-    );
+        .filter(dep => !scripts.includes(dep)); // don t remove package in scripts
+    });
   type input = { imports?: string[]; deps?: string[] };
   type output = { install?: string[]; remove?: string[] };
   type cmd = { install?: string; remove?: string };
