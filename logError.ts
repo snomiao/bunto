@@ -1,2 +1,5 @@
+export const logError: (
+  topic: string
+) => (reason: any) => void | PromiseLike<void> = (topic) => (e) =>
+  console.error(topic, e.message ?? e);
 
-export const logError: (reason: any) => void | PromiseLike<void> = (e) => console.error(e.message ?? e);
