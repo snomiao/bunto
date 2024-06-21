@@ -1,8 +1,9 @@
 {
   "name": "bun-auto",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "snomiao <snomiao@gmail.com>",
   "module": "index.ts",
+  "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "devDependencies": {
     "@types/bun": "^1.1.5",
     "@types/jest": "^29.5.12",

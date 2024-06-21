@@ -1,6 +1,6 @@
 # Bun Auto
 
-Auto Install Packages as you code, ZEN-MODE for js coding.
+Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.
 
 ## Usage
 
