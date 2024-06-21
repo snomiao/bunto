@@ -1,18 +1,18 @@
 {
   "name": "bun-auto",
+  "version": "1.3.5",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
-  "version": "1.3.4",
   "author": "snomiao <snomiao@gmail.com>",
-  "module": "index.ts",
   "exports": {
     "import": "./index.ts",
     "types": "./index.ts"
   },
+  "module": "index.ts",
+  "types": "./index.ts",
   "bin": {
     "bai": "./cli.ts",
     "bun-auto": "./cli.ts"
   },
-  "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "files": [
     "*.ts"
   ],
@@ -26,7 +26,7 @@
     "bun": "^1.1.15",
     "ignore": "^5.3.1",
     "rambda": "^9.2.1",
-    "snoflow": "^1.2.3",
+    "snoflow": "^1.2.4",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
