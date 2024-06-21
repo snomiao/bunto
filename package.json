@@ -1,20 +1,29 @@
 {
   "name": "bun-auto",
-  "version": "1.3.0",
-  "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
+  "version": "1.3.3",
   "author": "snomiao <snomiao@gmail.com>",
-  "type": "module",
+  "module": "index.ts",
+  "dependencies": {
+    "bun": "^1.1.15",
+    "ignore": "^5.3.1",
+    "rambda": "^9.2.1",
+    "snoflow": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.5",
+    "@types/jest": "^29.5.12",
+    "@types/lodash-es": "^4.17.12"
+  },
   "exports": {
     "import": "./index.ts",
     "types": "./index.ts"
   },
-  "module": "index.ts",
-  "types": "./index.ts",
   "bin": {
     "bai": "./index.ts",
     "bun-auto": "./index.ts",
     "bun-auto-install": "./index.ts"
   },
+  "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "files": [
     "*.ts"
   ],
@@ -24,19 +33,6 @@
     "release": "bunx commit-and-tag-version && git push --follow-tags && npm publish",
     "test": "bun test"
   },
-  "dependencies": {
-    "bun": "^1.1.15",
-    "ignore": "^5.3.1",
-    "rambda": "^9.2.1",
-    "snoflow": "^1.2.3"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.1.5",
-    "@types/jest": "^29.5.12",
-    "@types/lodash-es": "^4.17.12",
-    "typescript": "^5.5.2"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+  "type": "module",
+  "types": "./index.ts"
 }

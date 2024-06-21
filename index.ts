@@ -1,4 +1,4 @@
-#!bun
+#!/usr/bin/env bun
 import { $ } from "bun";
 import fs from "fs/promises";
 import ignore from "ignore";
@@ -7,6 +7,7 @@ import { difference, keys, toPairs } from "rambda";
 import { snoflow } from "snoflow";
 import { logError } from "./logError";
 import { nil } from "./nil";
+import { noneed } from "./noneed";
 import { wait } from "./wait";
 
 if (import.meta.main) {
@@ -51,7 +52,9 @@ export default async function bunAuto() {
     .map((s) =>
       [...s.values()]
         .flat()
-        .filter((f) => !f.startsWith("./"))
+        .filter((f) => !f.startsWith("."))
+        .filter((f) => !f.startsWith("@/"))
+        .filter((f) => !f.startsWith("~/"))
         .map((f) =>
           f.startsWith("@")
             ? f.split("/").slice(0, 2).join("/")
@@ -66,11 +69,11 @@ export default async function bunAuto() {
     .map((s) => wait(() => JSON.parse(s)).catch(logError("[package.json]")))
     .filter()
     .map((pkg) => {
-      const scripts = JSON.stringify(pkg.scripts)
+      const scripts = JSON.stringify(pkg.scripts);
       return toPairs(pkg)
         .filter(([key, depObj]) => key.match(/dependencies$/i))
         .flatMap(([k, depObj]) => keys(depObj) as string[])
-        .filter(dep => !scripts.includes(dep)); // don t remove package in scripts
+        .filter((dep) => !scripts.includes(dep)); // don t remove package in scripts
     });
   type input = { imports?: string[]; deps?: string[] };
   type output = { install?: string[]; remove?: string[] };
@@ -107,9 +110,11 @@ export default async function bunAuto() {
     .map(async (cmd) => {
       cmd.install &&
         (await $`bun install ${cmd.install}`.catch(nil)) &&
+        !noneed.has(cmd.install) &&
         (await $`bun install -d @types/${cmd.install}`.quiet().catch(nil));
       cmd.remove &&
         (await $`bun remove ${cmd.remove}`.catch(nil)) &&
+        !noneed.has(cmd.remove) &&
         (await $`bun remove -d @types/${cmd.remove}`.quiet().catch(nil));
     })
     .done();
