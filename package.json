@@ -1,6 +1,6 @@
 {
   "name": "bun-auto",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "author": "snomiao <snomiao@gmail.com>",
   "exports": {
