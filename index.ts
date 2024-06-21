@@ -105,10 +105,10 @@ export default async function bunAuto() {
     .map(async (cmd) => {
       cmd.install &&
         (await $`bun install ${cmd.install}`.catch(nil)) &&
-        (await $`bun install @types/${cmd.install}`.quiet().catch(nil));
+        (await $`bun install -d @types/${cmd.install}`.quiet().catch(nil));
       cmd.remove &&
         (await $`bun remove ${cmd.remove}`.catch(nil)) &&
-        (await $`bun remove @types/${cmd.remove}`.quiet().catch(nil));
+        (await $`bun remove -d @types/${cmd.remove}`.quiet().catch(nil));
     })
     .done();
 }
