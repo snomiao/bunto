@@ -28,7 +28,7 @@
   "scripts": {
     "build": "echo no build step",
     "prerelease": "bun run build && bun run test",
-    "release": "bunx standard-version && git push --follow-tags && npm publish",
+    "release": "bunx commit-and-tag-version && git push --follow-tags && npm publish",
     "test": "bun test"
   },
   "type": "module",
