@@ -5,16 +5,16 @@ import ignore from "ignore";
 import path from "path";
 import { difference, keys, toPairs } from "rambda";
 import { snoflow } from "snoflow";
+
 import { logError } from "./logError";
 import { nil } from "./nil";
 import { wait } from "./wait";
-
 if (import.meta.main) {
   await bunAuto();
 }
 
 export const bunAutoInstall = bunAuto;
-export default async function bunAuto() {
+export default async function bunAuto({ watch = true, remove = true } = {}) {
   const nodeBuiltins =
     "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib"
       .split(",")
@@ -28,12 +28,16 @@ export default async function bunAuto() {
   const ignorer = ignore({ allowRelativePaths: true }).add(ignores.split("\n"));
   const pattern = "**/*.{ts,tsx,jsx,js,mjs,cjs}";
   const glob = new Bun.Glob(pattern);
-  const imports = snoflow(fs.watch("./"))
-    .map((event) => event.filename)
-    .filter()
-    .map((f) => path.relative(process.cwd(), f))
-    .filter((f) => glob.match(f))
-    .join(snoflow(glob.scan()))
+  const imports = snoflow(glob.scan())
+    .join(
+      (watch &&
+        snoflow(fs.watch("./"))
+          .map((event) => event.filename)
+          .filter()
+          .map((f) => path.relative(process.cwd(), f))
+          .filter((f) => glob.match(f))) ||
+        snoflow([])
+    )
     .map((f) => f.replace(/\\/g, "/"))
     .filter(ignorer.createFilter())
     .reduce(new Map<string, string[]>(), async (m, f) => {
@@ -59,18 +63,20 @@ export default async function bunAuto() {
         )
     );
 
-  const deps = snoflow(fs.watch("./package.json"))
-    .map((e) => "package.json changed")
-    .join(snoflow("first-trigger"))
+  const deps = snoflow("first-ping")
+    .join(
+      (watch && snoflow(fs.watch("./package.json")).map((e) => "ping")) ||
+        snoflow([])
+    )
     .map(() => fs.readFile("./package.json", "utf-8"))
     .map((s) => wait(() => JSON.parse(s)).catch(logError("[package.json]")))
     .filter()
     .map((pkg) => {
-      const scripts = JSON.stringify(pkg.scripts)
+      const scripts = JSON.stringify(pkg.scripts);
       return toPairs(pkg)
         .filter(([key, depObj]) => key.match(/dependencies$/i))
         .flatMap(([k, depObj]) => keys(depObj) as string[])
-        .filter(dep => !scripts.includes(dep)); // don t remove package in scripts
+        .filter((dep) => !scripts.includes(dep)); // don t remove package in scripts
     });
   type input = { imports?: string[]; deps?: string[] };
   type output = { install?: string[]; remove?: string[] };
@@ -108,7 +114,8 @@ export default async function bunAuto() {
       cmd.install &&
         (await $`bun install ${cmd.install}`.catch(nil)) &&
         (await $`bun install -d @types/${cmd.install}`.quiet().catch(nil));
-      cmd.remove &&
+      remove &&
+        cmd.remove &&
         (await $`bun remove ${cmd.remove}`.catch(nil)) &&
         (await $`bun remove -d @types/${cmd.remove}`.quiet().catch(nil));
     })
