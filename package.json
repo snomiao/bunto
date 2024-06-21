@@ -1,9 +1,35 @@
 {
   "name": "bun-auto",
-  "version": "1.2.0",
-  "author": "snomiao <snomiao@gmail.com>",
-  "module": "index.ts",
+  "version": "1.3.0",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
+  "author": "snomiao <snomiao@gmail.com>",
+  "type": "module",
+  "exports": {
+    "import": "./index.ts",
+    "types": "./index.ts"
+  },
+  "module": "index.ts",
+  "types": "./index.ts",
+  "bin": {
+    "bai": "./index.ts",
+    "bun-auto": "./index.ts",
+    "bun-auto-install": "./index.ts"
+  },
+  "files": [
+    "*.ts"
+  ],
+  "scripts": {
+    "build": "echo no build step",
+    "prerelease": "bun run build && bun run test",
+    "release": "bunx commit-and-tag-version && git push --follow-tags && npm publish",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "bun": "^1.1.15",
+    "ignore": "^5.3.1",
+    "rambda": "^9.2.1",
+    "snoflow": "^1.2.3"
+  },
   "devDependencies": {
     "@types/bun": "^1.1.5",
     "@types/jest": "^29.5.12",
@@ -12,31 +38,5 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  },
-  "exports": {
-    "import": "./index.ts",
-    "types": "./index.ts"
-  },
-  "bin": {
-    "bun-auto-install": "./index.ts",
-    "bai": "./index.ts"
-  },
-  "files": [
-    "*.ts",
-    "dist"
-  ],
-  "scripts": {
-    "build": "echo no build step",
-    "prerelease": "bun run build && bun run test",
-    "release": "bunx commit-and-tag-version && git push --follow-tags && npm publish",
-    "test": "bun test"
-  },
-  "type": "module",
-  "types": "./index.ts",
-  "dependencies": {
-    "bun": "^1.1.15",
-    "ignore": "^5.3.1",
-    "rambda": "^9.2.1",
-    "snoflow": "^1.2.3"
   }
 }
