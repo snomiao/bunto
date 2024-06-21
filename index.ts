@@ -1,4 +1,4 @@
-#!bun
+#!/usr/bin/env bun
 import { $ } from "bun";
 import fs from "fs/promises";
 import ignore from "ignore";
@@ -8,6 +8,7 @@ import { snoflow } from "snoflow";
 
 import { logError } from "./logError";
 import { nil } from "./nil";
+import { noneed } from "./noneed";
 import { wait } from "./wait";
 if (import.meta.main) {
   await bunAuto();
@@ -55,7 +56,9 @@ export default async function bunAuto({ watch = true, remove = true } = {}) {
     .map((s) =>
       [...s.values()]
         .flat()
-        .filter((f) => !f.startsWith("./"))
+        .filter((f) => !f.startsWith("."))
+        .filter((f) => !f.startsWith("@/"))
+        .filter((f) => !f.startsWith("~/"))
         .map((f) =>
           f.startsWith("@")
             ? f.split("/").slice(0, 2).join("/")
@@ -113,10 +116,12 @@ export default async function bunAuto({ watch = true, remove = true } = {}) {
     .map(async (cmd) => {
       cmd.install &&
         (await $`bun install ${cmd.install}`.catch(nil)) &&
+        !noneed.has(cmd.install) &&
         (await $`bun install -d @types/${cmd.install}`.quiet().catch(nil));
       remove &&
         cmd.remove &&
         (await $`bun remove ${cmd.remove}`.catch(nil)) &&
+        !noneed.has(cmd.remove) &&
         (await $`bun remove -d @types/${cmd.remove}`.quiet().catch(nil));
     })
     .done();
