@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.8](https://github.com/snomiao/bun-auto/compare/v1.3.7...v1.3.8) (2024-06-21)
+
+
+### Bug Fixes
+
+* **main:** include json ([841a821](https://github.com/snomiao/bun-auto/commit/841a82105799cadb24a4936755656cf04937eb7f))
+
 ## [1.3.7](https://github.com/snomiao/bun-auto/compare/v1.3.6...v1.3.7) (2024-06-21)
 
 ## [1.3.6](https://github.com/snomiao/bun-auto/compare/v1.3.5...v1.3.6) (2024-06-21)
