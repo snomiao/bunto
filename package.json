@@ -1,6 +1,6 @@
 {
   "name": "bun-auto",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "author": "snomiao <snomiao@gmail.com>",
   "exports": {
@@ -10,15 +10,15 @@
   "module": "index.ts",
   "types": "./index.ts",
   "bin": {
-    "bai": "bun ./cli.ts",
-    "bun-auto": "bun ./cli.ts"
+    "bai": "./bin/cli",
+    "bun-auto": "./bin/cli"
   },
   "files": [
     "*.ts",
     "*.json"
   ],
   "scripts": {
-    "build": "echo no build step",
+    "build": "bun build ./cli.ts --outfile=./bin/cli --target=bun --compile",
     "prerelease": "bun run build && bun run test",
     "release": "bunx commit-and-tag-version && git push --follow-tags && npm publish",
     "test": "bun test"
