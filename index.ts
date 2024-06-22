@@ -7,14 +7,20 @@ import { difference, keys, toPairs } from "rambda";
 import { snoflow } from "snoflow";
 import { logError } from "./logError";
 import { nil } from "./nil";
-import { noneed } from "./notneed";
+import { notneed } from "./notneed";
 import { wait } from "./wait";
+
 if (import.meta.main) {
   await bunAuto();
 }
 
 export const bunAutoInstall = bunAuto;
-export default async function bunAuto({ watch = true, remove = true } = {}) {
+export default async function bunAuto({
+  watch = true,
+  install = true,
+  remove = true,
+  dryRun = false,
+} = {}) {
   const nodeBuiltins =
     "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib"
       .split(",")
@@ -113,15 +119,19 @@ export default async function bunAuto({ watch = true, remove = true } = {}) {
     )
     .filter()
     .map(async (cmd) => {
-      cmd.install &&
+      if (dryRun) return console.log(JSON.stringify(cmd));
+      install &&
+        cmd.install &&
         (await $`bun install ${cmd.install}`.catch(nil)) &&
-        !noneed.has(cmd.install) &&
+        !notneed.has(cmd.install) &&
         (await $`bun install -d @types/${cmd.install}`.quiet().catch(nil));
       remove &&
         cmd.remove &&
         (await $`bun remove ${cmd.remove}`.catch(nil)) &&
-        !noneed.has(cmd.remove) &&
+        !notneed.has(cmd.remove) &&
         (await $`bun remove -d @types/${cmd.remove}`.quiet().catch(nil));
     })
-    .done();
+    .done()
+    .catch(logError("[stream terminated]"));
+  console.log("[Bun Auto] All done!");
 }
