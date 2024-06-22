@@ -61,9 +61,10 @@ export default async function bunAuto({
     .map((s) =>
       [...s.values()]
         .flat()
-        .filter((f) => !f.startsWith("."))
-        .filter((f) => !f.startsWith("@/"))
-        .filter((f) => !f.startsWith("~/"))
+        .filter((f) => !f.startsWith(".")) // file relative
+        .filter((f) => !f.startsWith("@/")) // root alias
+        .filter((f) => !f.startsWith("~/")) // root alias
+        .filter((f) => !f.match(":")) // virtual module
         .map((f) =>
           f.startsWith("@")
             ? f.split("/").slice(0, 2).join("/")
