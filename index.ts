@@ -3,13 +3,13 @@ import { $ } from "bun";
 import fs from "fs/promises";
 import ignore from "ignore";
 import path from "path";
+import { peekYaml } from "peek-log";
 import { difference, keys, toPairs } from "rambda";
 import { snoflow } from "snoflow";
 import { logError } from "./logError";
 import { nil } from "./nil";
 import { notneed } from "./notneed";
 import { wait } from "./wait";
-
 if (import.meta.main) {
   await bunAuto();
 }
@@ -30,19 +30,19 @@ export default async function bunAuto({
     .flatMap((e) => ["bun:" + e, e]);
   const implicitImports = new Set("typescript,react,react-dom,vue".split(","));
   const builtins = new Set([...nodeBuiltins, ...bunBuiltins]);
+  // todo: handle ignore files not in root
   const ignores = await fs.readFile(".gitignore", "utf8");
   const ignorer = ignore({ allowRelativePaths: true }).add(ignores.split("\n"));
   const pattern = "**/*.{ts,tsx,jsx,js,mjs,cjs}";
   const glob = new Bun.Glob(pattern);
   const imports = snoflow(glob.scan())
     .join(
-      (watch &&
+      (!watch && snoflow([])) ||
         snoflow(fs.watch("./"))
           .map((event) => event.filename)
           .filter()
           .map((f) => path.relative(process.cwd(), f))
-          .filter((f) => glob.match(f))) ||
-        snoflow([])
+          .filter((f) => glob.match(f))
     )
     .map((f) => f.replace(/\\/g, "/"))
     .filter(ignorer.createFilter())
@@ -71,20 +71,21 @@ export default async function bunAuto({
         )
     );
 
-  const deps = snoflow("first-ping")
+  // todo: handle package files not in root
+  let _pkg = null;
+  const deps = snoflow("first-pkg-read")
     .join(
-      (watch && snoflow(fs.watch("./package.json")).map((e) => "ping")) ||
-        snoflow([])
+      (!watch && snoflow([])) ||
+        snoflow(fs.watch("./package.json")).map((e) => "ping")
     )
     .map(() => fs.readFile("./package.json", "utf-8"))
     .map((s) => wait(() => JSON.parse(s)).catch(logError("[package.json]")))
     .filter()
     .map((pkg) => {
-      const scripts = JSON.stringify(pkg.scripts);
+      _pkg = pkg;
       return toPairs(pkg)
         .filter(([key, depObj]) => key.match(/dependencies$/i))
-        .flatMap(([k, depObj]) => keys(depObj) as string[])
-        .filter((dep) => !scripts.includes(dep)); // don t remove package in scripts
+        .flatMap(([k, depObj]) => keys(depObj) as string[]);
     });
   type input = { imports?: string[]; deps?: string[] };
   type output = { install?: string[]; remove?: string[] };
@@ -99,7 +100,12 @@ export default async function bunAuto({
       const { imports, deps } = Object.assign(state, input);
       return Object.assign(state, {
         install: imports && deps && difference(imports, deps),
-        remove: imports && deps && difference(deps, imports),
+        remove:
+          imports &&
+          deps &&
+          difference(deps, imports).filter(
+            (dep) => !JSON.stringify(_pkg!.scripts).includes(dep)
+          ), // don t remove package listed in scripts,
       });
     })
     .debounce(200)
@@ -119,7 +125,8 @@ export default async function bunAuto({
     )
     .filter()
     .map(async (cmd) => {
-      if (dryRun) return console.log(JSON.stringify(cmd));
+      peekYaml(cmd);
+      if (dryRun) return;
       install &&
         cmd.install &&
         (await $`bun install ${cmd.install}`.catch(nil)) &&
