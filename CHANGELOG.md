@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.12](https://github.com/snomiao/bun-auto/compare/v1.3.11...v1.3.12) (2024-06-22)
+
+
+### Bug Fixes
+
+* **main:** diff pkg scripts ([1839569](https://github.com/snomiao/bun-auto/commit/1839569822b5d5426af7517c1751a2963bae8d55))
+* **main:** filter file relative ([5bbca2f](https://github.com/snomiao/bun-auto/commit/5bbca2f00241ad266d523a9ef347119661444e39))
+* **main:** stage ([3468077](https://github.com/snomiao/bun-auto/commit/346807747c522ea0ff6872e52d84911a1cc12d4c))
+
 ## [1.3.11](https://github.com/snomiao/bun-auto/compare/v1.3.10...v1.3.11) (2024-06-22)
 
 ## [1.3.10](https://github.com/snomiao/bun-auto/compare/v1.3.9...v1.3.10) (2024-06-22)
