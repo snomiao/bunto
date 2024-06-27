@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+0#!/usr/bin/env bun
 import { $ } from "bun";
 import fs from "fs/promises";
 import ignore from "ignore";
@@ -22,7 +22,7 @@ export default async function bunAuto({
   dryRun = false,
 } = {}) {
   const nodeBuiltins =
-    "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib"
+    "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib,worker_threads"
       .split(",")
       .flatMap((e) => ["node:" + e, e]);
   const bunBuiltins = "bun,sqlite,test"
