@@ -1,15 +1,20 @@
-0#!/usr/bin/env bun
-import { $ } from "bun";
+#!/usr/bin/env bun
+import DIE from "@snomiao/die";
 import fs from "fs/promises";
-import ignore from "ignore";
+import pMap from "p-map";
 import path from "path";
-import { peekYaml } from "peek-log";
-import { difference, keys, toPairs } from "rambda";
-import { snoflow } from "snoflow";
+import { difference, filter, keys, sortBy } from "rambda";
+import { parallels } from "snoflow";
+import type { PartialUnion } from "./PartialUnion";
+import { bunPMCommand } from "./bunPMCommand";
+import { createIgnoreFilter } from "./createIgnoreFilter";
+import { globTextMapFlow } from "./globMapFlow";
+import { globflow } from "./globflow";
+import { fspath } from "./import-helpers";
 import { logError } from "./logError";
 import { nil } from "./nil";
-import { notneed } from "./notneed";
 import { wait } from "./wait";
+
 if (import.meta.main) {
   await bunAuto();
 }
@@ -20,126 +25,235 @@ export default async function bunAuto({
   install = true,
   remove = true,
   dryRun = false,
+  signal = new AbortController().signal,
+  verbose = true,
 } = {}) {
+  console.log("[Bun Auto] Starting...");
+  let bunPmRunning = false;
   const nodeBuiltins =
     "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib,worker_threads"
       .split(",")
       .flatMap((e) => ["node:" + e, e]);
-  const bunBuiltins = "bun,sqlite,test"
+  const bunBuiltins = "bun,sqlite,test,main"
     .split(",")
     .flatMap((e) => ["bun:" + e, e]);
-  const implicitImports = new Set("typescript,react,react-dom,vue".split(","));
+  const implicitImports = new Set(
+    "typescript,react,react-dom,vue,bun,jest,node"
+      .split(",")
+      .flatMap((e) => ["@types/" + e, e])
+  );
+  const onlyTypeImports = new Set("ts-toolbelt".split(","));
+
   const builtins = new Set([...nodeBuiltins, ...bunBuiltins]);
   // todo: handle ignore files not in root
-  const ignores = await fs.readFile(".gitignore", "utf8");
-  const ignorer = ignore({ allowRelativePaths: true }).add(ignores.split("\n"));
-  const pattern = "**/*.{ts,tsx,jsx,js,mjs,cjs}";
-  const glob = new Bun.Glob(pattern);
-  const imports = snoflow(glob.scan())
-    .join(
-      (!watch && snoflow([])) ||
-        snoflow(fs.watch("./"))
-          .map((event) => event.filename)
-          .filter()
-          .map((f) => path.relative(process.cwd(), f))
-          .filter((f) => glob.match(f))
-    )
-    .map((f) => f.replace(/\\/g, "/"))
-    .filter(ignorer.createFilter())
-    .reduce(new Map<string, string[]>(), async (m, f) => {
-      const content = await fs
-        .readFile(f, "utf8")
-        .catch(() => (m.delete(f), null));
-      if (content)
-        await wait(() => new Bun.Transpiler({ loader: "tsx" }).scan(content))
-          .then((r) => r.imports.map((e) => e.path))
-          .then((deps) => m.set(f, deps))
-          .catch(logError("[" + f + "]"));
-      return m;
-    })
-    .debounce(100)
-    .map((s) =>
-      [...s.values()]
-        .flat()
-        .filter((f) => !f.startsWith(".")) // file relative
-        .filter((f) => !f.startsWith("@/")) // root alias
-        .filter((f) => !f.startsWith("~/")) // root alias
-        .filter((f) => !f.match(":")) // virtual module
-        .map((f) =>
-          f.startsWith("@")
-            ? f.split("/").slice(0, 2).join("/")
-            : f.split("/")[0]
-        )
-    );
 
-  // todo: handle package files not in root
-  let _pkg = null;
-  const deps = snoflow("first-pkg-read")
-    .join(
-      (!watch && snoflow([])) ||
-        snoflow(fs.watch("./package.json")).map((e) => "ping")
-    )
-    .map(() => fs.readFile("./package.json", "utf-8"))
-    .map((s) => wait(() => JSON.parse(s)).catch(logError("[package.json]")))
-    .filter()
-    .map((pkg) => {
-      _pkg = pkg;
-      return toPairs(pkg)
-        .filter(([key, depObj]) => key.match(/dependencies$/i))
-        .flatMap(([k, depObj]) => keys(depObj) as string[]);
+  // load git ignore filters
+  const ignoreFilter = createIgnoreFilter({ watch, signal });
+
+  // dont remove pkgs that have configs, like tailwindcss, postcss, vite, etc
+  let allConfigStringPromise = Promise.withResolvers<string>();
+  globTextMapFlow("./*{config,rc}.{ts,tsx,jsx,js,mjs,cjs,json}", {
+    watch,
+    filter: await ignoreFilter.promise,
+    signal,
+  })
+    .map((map) => {
+      const allConfigString = JSON.stringify([...map.entries()]);
+      // update promise allConfigFileString
+      allConfigStringPromise.resolve(allConfigString);
+      allConfigStringPromise = Promise.withResolvers<string>();
+      allConfigStringPromise.resolve(allConfigString);
+      return allConfigString;
+    })
+    .done();
+
+  // load package.json files {dir, scriptsStr, pkgDeps}[]
+  const pkgs = globTextMapFlow("./**/package.json", {
+    watch,
+    filter: await ignoreFilter.promise,
+    signal,
+  }).map((pkgMap) => {
+    return [...pkgMap.entries()].map(([pkgFile, pkgJson]) => {
+      // each pkg file applies to none of sub packages, sub packages manages them selves
+      const dir = fspath.dirname(pkgFile);
+      const pkgModules = dir + "/node_modules"; // should bun i to install if not existed
+      const pkg = JSON.parse(pkgJson);
+      const scriptsStr = Object.values(pkg.scripts || {}).join("\n");
+      const pkgDeps = keys(pkg)
+        .filter((k) => k.match(/dependencies$/i))
+        .map((k) => keys(pkg[k]))
+        .flat();
+      return { dir, scriptsStr, pkgDeps };
     });
-  type input = { imports?: string[]; deps?: string[] };
-  type output = { install?: string[]; remove?: string[] };
-  type cmd = { install?: string; remove?: string };
+  });
 
-  // diff
-  console.log("[bun-auto] is watching for changes");
-  await snoflow([{} as input])
-    .join(imports.map((imports) => ({ imports })))
-    .join(deps.map((deps) => ({ deps })))
-    .reduce<input & output>({}, (state, input) => {
-      const { imports, deps } = Object.assign(state, input);
-      return Object.assign(state, {
-        install: imports && deps && difference(imports, deps),
-        remove:
-          imports &&
-          deps &&
-          difference(deps, imports).filter(
-            (dep) => !JSON.stringify(_pkg!.scripts).includes(dep)
-          ), // don t remove package listed in scripts,
+  const imports = globflow("./**/*.{ts,tsx,jsx,js,mjs,cjs}", { watch })
+    .map(async (flist) => {
+      const _filter = await ignoreFilter.promise;
+      return filter((f) => _filter(f), flist);
+    })
+    // get import Map<file, import[]>
+    .reduce(new Map<string, string[]>(), async (m, changed) => {
+      await pMap(changed, async (f) => {
+        const content = await fs.readFile(f, "utf8").catch(nil);
+        if (!content) {
+          // file deleted or empty
+          m.delete(f);
+          return m;
+        }
+        const deps = (
+          await wait(() => {
+            if (f.endsWith(".tsx"))
+              return new Bun.Transpiler({ loader: "tsx" }).scan(content);
+            if (f.endsWith(".ts"))
+              return new Bun.Transpiler({ loader: "ts" }).scan(content);
+            if (f.endsWith(".jsx"))
+              return new Bun.Transpiler({ loader: "jsx" }).scan(content);
+            if (f.endsWith(".js"))
+              return new Bun.Transpiler({ loader: "js" }).scan(content);
+            if (f.endsWith(".mjs"))
+              return new Bun.Transpiler({ loader: "js" }).scan(content);
+            if (f.endsWith(".cjs"))
+              return new Bun.Transpiler({ loader: "js" }).scan(content);
+            DIE("unknown ext in " + f);
+          }).catch(logError("[" + f + "]"))
+        )?.imports
+          .map((e) => e.path)
+          .filter((f) => !f.startsWith(".")) // file relative
+          .filter((f) => !f.startsWith("@/")) // root alias
+          .filter((f) => !f.startsWith("~/")) // root alias
+          .filter((f) => !f.match(":")) // virtual module
+          // scoped
+          .map((f) =>
+            f.startsWith("@")
+              ? f.split("/").slice(0, 2).join("/")
+              : f.split("/")[0]
+          );
+        // parse error, wait for correct file next time, keep f state in m
+        if (!deps) return;
+        m.set(f, deps);
       });
-    })
+      return m;
+    });
+
+  // diff imports deps by pkgs
+  // { imports: typeof imports._type } & { pkgs: typeof pkgs._type }
+  const watching = parallels(
+    imports.map((imports) => ({ imports })),
+    pkgs.map((pkgs) => ({ pkgs }))
+  )
+    .filter(() => !bunPmRunning)
+    .abort(signal)
+    // memoize deps and pkgs
+    .map((e) => e as PartialUnion<typeof e>)
+    .reduce(async (s, a) => Object.assign(s ?? {}, a))
     .debounce(200)
-    // convert diffs to single command
-    .flatMap<cmd | undefined>(({ install, remove }) =>
-      [
-        install
-          ?.filter(Boolean)
-          .filter((e) => !builtins.has(e))
-          .map((install) => ({ install })),
-        remove
-          ?.filter(Boolean)
-          .filter((e) => !e.startsWith("@types"))
-          .filter((e) => implicitImports.has(e))
-          .map((remove) => ({ remove })),
-      ].flat()
-    )
-    .filter()
-    .map(async (cmd) => {
-      peekYaml(cmd);
-      if (dryRun) return;
-      install &&
-        cmd.install &&
-        (await $`bun install ${cmd.install}`.catch(nil)) &&
-        !notneed.has(cmd.install) &&
-        (await $`bun install -d @types/${cmd.install}`.quiet().catch(nil));
-      remove &&
-        cmd.remove &&
-        (await $`bun remove ${cmd.remove}`.catch(nil)) &&
-        !notneed.has(cmd.remove) &&
-        (await $`bun remove -d @types/${cmd.remove}`.quiet().catch(nil));
+    //
+    .map(async ({ imports, pkgs }) => {
+      if (!(imports && pkgs)) return null;
+      const allConfigFileString = await allConfigStringPromise.promise;
+
+      const processedFiles = new Set<string>();
+      const installs = new Map<string, string[]>();
+      const removes = new Map<string, string[]>();
+      // sort by pkg level, process deepest first
+      sortBy(({ dir }) => -dir.split("/").length, pkgs).map(
+        ({ dir, pkgDeps, scriptsStr }) => {
+          const scriptDeps = pkgDeps.filter((dep) => scriptsStr.includes(dep));
+
+          const pkgImports = [...imports.entries()]
+            .map(([file, imports]) => {
+              const rel = path.relative(dir, file);
+              if (rel.startsWith("..")) return;
+              if (processedFiles.has(file)) return;
+              processedFiles.add(file);
+              return imports;
+            })
+            .flatMap((e) => (e ? [e] : []))
+            .flat();
+
+          const install = difference(pkgImports, pkgDeps).filter(
+            (dep) => !builtins.has(dep)
+          );
+          const remove = difference(pkgDeps, pkgImports)
+            .filter((dep) => !builtins.has(dep))
+            .filter((dep) => !implicitImports.has(dep))
+            .filter((dep) => !onlyTypeImports.has(dep))
+            .filter((dep) => !dep.startsWith("prettier-plugin-"))
+            .filter((dep) => !dep.startsWith("eslint-config-"))
+            .filter((dep) => !scriptDeps.includes(dep))
+            .filter((dep) => !allConfigFileString.includes(dep))
+            .filter(
+              (dep) => !pkgImports.map((e) => "@types/" + e).includes(dep)
+            );
+          // install to dir
+          install.forEach((dep) => {
+            if (!installs.has(dir)) installs.set(dir, []);
+            installs.get(dir)!.push(dep);
+          });
+          // remove from dir
+          remove.forEach((dep) => {
+            if (!removes.has(dir)) removes.set(dir, []);
+            removes.get(dir)!.push(dep);
+          });
+        }
+      );
+      return { installs, removes };
     })
-    .done()
-    .catch(logError("[stream terminated]"));
+    .filter()
+    // TODO: optimize this delta stage, maybe unwind before this stage
+    .reduce(
+      {
+        installs: new Map<string, string[]>(),
+        removes: new Map<string, string[]>(),
+        delta: {
+          installs: new Map<string, string[]>(),
+          removes: new Map<string, string[]>(),
+        },
+      },
+      (s, a) => {
+        s.delta = {
+          installs: new Map(
+            [
+              ...new Set([...s.installs.keys(), ...a.installs.keys()]).values(),
+            ].map(
+              (key) =>
+                [
+                  key,
+                  difference(
+                    a.installs.get(key) ?? [],
+                    s.installs.get(key) ?? []
+                  ),
+                ] as const
+            )
+          ),
+          removes: new Map(
+            [
+              ...new Set([...s.removes.keys(), ...a.removes.keys()]).values(),
+            ].map(
+              (key) =>
+                [
+                  key,
+                  difference(
+                    a.removes.get(key) ?? [],
+                    s.removes.get(key) ?? []
+                  ),
+                ] as const
+            )
+          ),
+        };
+        return s;
+      }
+    )
+    .map(async ({ delta: { installs, removes } }) => {
+      if (!(installs && removes)) return;
+      bunPmRunning = true;
+      if (install) await bunPMCommand("install", installs, { dryRun });
+      if (remove) await bunPMCommand("remove", removes, { dryRun });
+      bunPmRunning = false;
+    })
+    .done();
+  watch && console.log("[Bun Auto] Watching...");
+  await Promise.all([watching]);
   console.log("[Bun Auto] All done!");
 }

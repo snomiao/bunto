@@ -24,7 +24,11 @@
     "test": "bun test"
   },
   "dependencies": {
+    "@snomiao/die": "^1.0.9",
+    "fast-glob": "^3.3.2",
+    "globby": "^14.0.1",
     "ignore": "^5.3.1",
+    "p-map": "^7.0.2",
     "peek-log": "^0.0.8",
     "rambda": "^9.2.1",
     "snoflow": "^1.2.5",
