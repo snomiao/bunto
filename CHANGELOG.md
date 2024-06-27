@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.4.0](https://github.com/snomiao/bun-auto/compare/v1.3.12...v1.4.0) (2024-06-27)
+
+
+### Features
+
+* **main:** init ([b16fb1b](https://github.com/snomiao/bun-auto/commit/b16fb1b5191580f918e42dbe3353f4fb265b93e8))
+
+
+### Bug Fixes
+
+* **main:** add worker_threads ([929f040](https://github.com/snomiao/bun-auto/commit/929f0406a8769d7d92a0a679544e31d599499b3e))
+* **main:** upgrade snoflow ([0e9adb4](https://github.com/snomiao/bun-auto/commit/0e9adb467ded7f7858102b81628922ab0ff178b4))
+
 ## [1.3.12](https://github.com/snomiao/bun-auto/compare/v1.3.11...v1.3.12) (2024-06-22)
 
 
