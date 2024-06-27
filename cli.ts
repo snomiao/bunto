@@ -1,5 +1,4 @@
 #!/usr/bin/env bun
-
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import bunAuto from ".";
@@ -8,6 +7,9 @@ import pkg from "./package.json";
 await yargs(hideBin(process.argv))
   .scriptName(pkg.name)
   .usage("$0 <cmd> [args]")
+  .example('$0', 'auto manage all dependencies and watching for changes')
+  .example('$0 i', 'install all missing dependencies and watching for changes')
+  .example('$0 r', 'remove all unnessecery dependencies and watching for changes')
   .command(
     ["*", "auto"],
     "bun auto manage dependencies",
@@ -38,7 +40,7 @@ await yargs(hideBin(process.argv))
         .alias("d", "dryRun")
         .boolean("dryRun")
         .default("dryRun", false, "dry run mode"),
-    async (argv) => await bunAuto(argv)
+    async (argv) => await bunAuto({ ...argv, install: false, remove: true })
   )
   .command(
     ["install", "i"],
@@ -54,7 +56,6 @@ await yargs(hideBin(process.argv))
     async (argv) => await bunAuto({ ...argv, install: true, remove: false })
   )
   .version(pkg.version)
-  .alias("w", "watch")
   .alias("v", "version")
   .alias("h", "help")
   .strict()
