@@ -13,6 +13,7 @@ import { globflow } from "./globflow";
 import { fspath } from "./import-helpers";
 import { logError } from "./logError";
 import { nil } from "./nil";
+import pkg from './package.json';
 import { wait } from "./wait";
 
 if (import.meta.main) {
@@ -28,7 +29,7 @@ export default async function bunAuto({
   signal = new AbortController().signal,
   verbose = true,
 } = {}) {
-  console.log("[Bun Auto] Starting...");
+  console.log("[Bun Auto] v"+pkg.version+" Starting...");
   let bunPmRunning = false;
   const nodeBuiltins =
     "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib,worker_threads"
