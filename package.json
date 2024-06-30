@@ -1,6 +1,6 @@
 {
   "name": "bun-auto",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "author": "snomiao <snomiao@gmail.com>",
   "exports": {
@@ -40,6 +40,7 @@
     "@types/bun": "^1.1.6",
     "@types/jest": "^29.5.12",
     "@types/yargs": "^17.0.32",
+    "commit-and-tag-version": "^12.4.1",
     "typescript": "^5.5.2"
   }
 }
