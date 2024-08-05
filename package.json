@@ -1,6 +1,6 @@
 {
   "name": "bun-auto",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "author": "snomiao <snomiao@gmail.com>",
   "exports": {
@@ -24,14 +24,14 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@snomiao/die": "^1.0.9",
     "bun": "^1.1.15",
     "globby": "^14.0.1",
     "ignore": "^5.3.1",
     "p-map": "^7.0.2",
     "peek-log": "^0.0.8",
+    "phpdie": "^1.2.12",
     "rambda": "^9.2.1",
-    "sflow": "^1.15.12",
+    "sflow": "^1.15.31",
     "yaml": "^2.4.5",
     "yargs": "^17.7.2"
   },
