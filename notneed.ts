@@ -1,10 +1,10 @@
 import { values } from "rambda";
-import { snoflow } from "snoflow";
+import { sflow } from "sflow";
 import notNeedData from "./notNeededPackages.json";
 
 // if (import.meta.main) {
 //   const path = import.meta.dir + "/notNeededPackages.json";
-//   const localJson = await snoflow([path])
+//   const localJson = await sflow([path])
 //     .map((e) => fs.readFile(e, "utf8"))
 //     .toFirst();
 //   await updateNotNeededPackages();
@@ -12,7 +12,7 @@ import notNeedData from "./notNeededPackages.json";
 //   async function updateNotNeededPackages() {
 //     const url =
 //       "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/notNeededPackages.json";
-//     const onlineJson = await snoflow([url])
+//     const onlineJson = await sflow([url])
 //       .map((e) => fetch(e))
 //       .map((e) => e.text())
 //       .toFirst();
@@ -24,7 +24,7 @@ import notNeedData from "./notNeededPackages.json";
 //   }
 // }
 
-export const notneed = await snoflow([notNeedData])
+export const notneed = await sflow([notNeedData])
   .map((e) => e.packages)
   .map((e) => values(e))
   .flat()

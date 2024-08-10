@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import { globby } from "globby";
 import path from "path";
 import { filter, map } from "rambda";
-import { snoflow } from "snoflow";
+import { sflow } from "sflow";
 
 /** return glob all list, and then watch changes to got changed [filename], note that changed [filename] may be deleted */
 
@@ -18,18 +18,18 @@ export function globflow(
 ) {
   const glob = new Glob(pattern);
   return (
-    snoflow([[] as string[]])
-      .interval(polling)
-      .map(() => globby(pattern))
+    sflow(globby(pattern))
+      // .chunkInterval(polling)
+      // .map(() => globby(pattern))
       // .map(() => Array.fromAsync(glob.scan({ dot: true })))
-      .join(
-        (watch || undefined) &&
-          snoflow(fs.watch(".", { recursive: true }))
-            .map((event) => event.filename)
-            .filter()
-            .buffer(1)
-      )
-      .abort(signal)
+      // .merge(
+      //   (watch || undefined) &&
+      //     sflow(fs.watch(".", { recursive: true }))
+      //       .map((event) => event.filename)
+      //       .filter()
+      //       .chunk(1)
+      // )
+      // .abort(signal)
       .map(
         filter((f) =>
           glob.match(

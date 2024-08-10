@@ -1,4 +1,4 @@
-# Bun Auto
+;[=6=
 
 Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.
 

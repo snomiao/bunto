@@ -1,17 +1,20 @@
 import ignore from "ignore";
 import path from "path";
 import { globTextMapFlow } from "./globMapFlow";
+import { globby } from "globby";
 
 export function createIgnoreFilter({
   watch,
   signal,
-  pattern = "./**/.{bun,git}ignore",
+  pattern = "./**/.gitignore",
 }: {
   watch?: boolean;
   signal?: AbortSignal;
   /* must start with ./ , eg. ./.{prettier,git}ignore */
   pattern?: string;
 }) {
+  const defaultIgnores = ['./.git']
+  // globby("./**/.gitignore",{ig})
   const ret = Promise.withResolvers<(filename: string) => boolean>();
   /* TODO: ignore ignorefiles it self */
   globTextMapFlow(pattern, { watch, signal })
@@ -20,7 +23,8 @@ export function createIgnoreFilter({
       const filters = [...ignoresMap.entries()].map(([f, text]) => {
         // each ignore file applies to all sub folder
         const dir = path.dirname(f);
-        const filter = ignore().add(text.split("\n")).createFilter();
+        const ignores = [...text.split("\n"), ...defaultIgnores];
+        const filter = ignore().add(ignores).createFilter();
         return { dir, filter };
       });
       const filter = (f: string) =>
