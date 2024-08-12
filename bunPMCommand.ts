@@ -12,7 +12,7 @@ export async function bunPMCommand(
     const cwd = path.resolve(dir);
     const sh = $.cwd(cwd);
     for await (const dep of deps) {
-      console.log("[Bun Auto] bun " + command + " " + dep + "# in " + dir);
+      console.log("[Bun Auto] bun " + command + " " + dep + " in " + dir);
       if (dry) continue;
       (await sh`bun ${command} ${dep}`.quiet().catch(nil)) &&
         !notneed.has(dep) &&

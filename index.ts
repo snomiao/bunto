@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+// import "dotenv";
 import ignore from "ignore";
 import path from "path";
 import DIE from "phpdie";
@@ -7,7 +8,7 @@ import { regexMapper } from "regex-mapper";
 import { nil, sf } from "sflow";
 import { bunPMCommand } from "./bunPMCommand";
 import { hackNextJSPath } from "./globflow";
-import { fsp, yaml } from "./import-helpers";
+import { fsp } from "./import-helpers";
 import pkg from "./package.json";
 import type { PartialUnion } from "./PartialUnion";
 if (import.meta.main) {
@@ -23,7 +24,7 @@ export default async function bunAuto({
   signal = new AbortController().signal,
   verbose = true,
 } = {}) {
-  console.log("[Bun Auto] v" + pkg.version + " Starting...");
+  console.log("[Bun Auto] v" + pkg.version);
   let bunPmRunning = false;
   const config = {
     nodeBuiltins:
@@ -36,7 +37,7 @@ export default async function bunAuto({
     pkgsPattern: "./**/package.json",
     codesPattern: "./**/*.{ts,tsx,jsx,js,mjs,cjs}",
   };
-  console.log("[Bun Auto] Conf" + yaml.stringify(config).replace(/\s+/g, " "));
+  // console.log("[Bun Auto] Conf" + yaml.stringify(config).replace(/\s+/g, " "));
 
   const nodeBuiltins = config.nodeBuiltins
     .split(",")
@@ -60,7 +61,7 @@ export default async function bunAuto({
   const ignoreFilter = await sf(
     new Bun.Glob(config.ignoreFilesPattern).scan({ dot: true })
   )
-    .pMap(async (f) => [f, await Bun.file(f).text().catch(nil)] as const)
+    .map(async (f) => [f, await Bun.file(f).text().catch(nil)] as const)
     .reduce(
       (map, [k, v]) => (v ? map.set(k, v) : (map.delete(k), map)),
       new Map<string, string>()
@@ -85,7 +86,7 @@ export default async function bunAuto({
   const allConfigText = await sf(
     new Bun.Glob(config.configsPattern).scan({ dot: true })
   )
-    .pMap(async (f) => [f, await Bun.file(f).text()] as const)
+    .map(async (f) => [f, await Bun.file(f).text()] as const)
     .chunk()
     .map((e) => e.join("\n"))
     .toAtLeastOne();
@@ -101,16 +102,18 @@ export default async function bunAuto({
             .filter(),
         ])
   )
+    .map((e) => "./" + path.relative(process.cwd(), e))
+    .map((f) => f.replace(/\\/g, "/"))
     .filter((f) => pkgsGlob.match(hackNextJSPath(f)))
     .filter((f) => ignoreFilter(f))
-    .pMap(async (f) => [f, await Bun.file(f).text()] as const)
+    .log((f) => "* Package " + f)
+    .map(async (f) => [f, await Bun.file(f).text()] as const)
     .reduce(
       (map, [k, v]) => (v ? map.set(k, v) : (map.delete(k), map)),
       new Map<string, string>()
     )
-    .tail(1)
-    .map((pkgMap) => {
-      return [...pkgMap.entries()].map(([pkgFile, pkgJson]) => {
+    .map((pkgContentsMap) => {
+      return [...pkgContentsMap.entries()].map(([pkgFile, pkgJson]) => {
         // each pkg file applies to none of sub packages, sub packages manages them selves
         const dir = path.dirname(pkgFile);
         const pkgModules = dir + "/node_modules"; // should bun i to install if not existed
@@ -135,8 +138,11 @@ export default async function bunAuto({
             .filter(),
         ])
   )
+    .map((e) => "./" + path.relative(process.cwd(), e))
+    .map((f) => f.replace(/\\/g, "/"))
     .filter((f) => codesGlob.match(hackNextJSPath(f)))
     .filter((f) => ignoreFilter(f))
+    .log((f) => "* Code " + f)
     .reduce(async (m, f: string): Promise<Map<string, string[]>> => {
       const content = await Bun.file(f).text().catch(nil);
 
@@ -149,6 +155,7 @@ export default async function bunAuto({
       const typeImports = [
         ...content.matchAll(/^import type .* from "(.*?)";$/gm),
       ].map((m) => m[1]);
+
       const loader =
         regexMapper({
           tsx: /\.tsx$/,
@@ -176,8 +183,12 @@ export default async function bunAuto({
       if (!deps) return m;
       m.set(f, deps);
       return m;
-    }, new Map<string, string[]>())
-    .tail(1);
+    }, new Map<string, string[]>());
+  (async function () {
+    await pkgsReadyFlag.promise;
+    await importsReadyFlag.promise;
+    watch && console.log("[Bun Auto] Watching...");
+  })();
 
   await sf(
     pkgs.map((pkgs) => ({ pkgs })),
@@ -186,9 +197,7 @@ export default async function bunAuto({
     .map((e) => e as PartialUnion<typeof e>)
     .reduce((acc, e) => ({ ...acc, ...e }))
     .filter(({ imports, pkgs }) => imports && pkgs)
-    .filter(async () => await pkgsReadyFlag.promise)
-    .filter(async () => await importsReadyFlag.promise)
-    .debounce(100)
+    .debounce(1000)
     .map(async function resolveActions({ imports, pkgs }) {
       if (!(imports && pkgs)) DIE("filtered");
       const processedFiles = new Set<string>();
@@ -236,6 +245,8 @@ export default async function bunAuto({
       );
       return { installs, removes };
     })
+    // .log()
+
     .filter()
     // TODO: optimize this delta stage, maybe unwind before this stage
     .reduce(
@@ -278,6 +289,7 @@ export default async function bunAuto({
       }
     )
     .map((e) => e.delta)
+    // .log()
     .map(async ({ installs, removes }) => {
       if (!(installs && removes)) return;
       bunPmRunning = true;
@@ -286,6 +298,5 @@ export default async function bunAuto({
       bunPmRunning = false;
     })
     .done();
-  watch && console.log("[Bun Auto] First Scanning Done, Start Watching...");
   console.log("[Bun Auto] All done!");
 }
