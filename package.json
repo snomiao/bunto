@@ -28,7 +28,6 @@
     "globby": "^14.0.1",
     "ignore": "^5.3.1",
     "p-map": "^7.0.2",
-    "peek-log": "^0.0.8",
     "phpdie": "^1.2.12",
     "rambda": "^9.2.1",
     "regex-mapper": "^0.0.2",
