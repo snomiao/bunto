@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import bunAuto from ".";
+import bunAuto from "./index";
 import pkg from "./package.json";
 
 await yargs(hideBin(process.argv))
@@ -18,9 +18,9 @@ await yargs(hideBin(process.argv))
         .alias("w", "watch")
         .boolean("watch")
         .default("watch", true, "watch mode")
-        .alias("d", "dryRun")
-        .boolean("dryRun")
-        .default("dryRun", false, "dry run mode")
+        // .alias("d", "dry")
+        .boolean("dry")
+        .default("dry", false, "dry run mode")
         .alias("r", "remove")
         .boolean("remove")
         .default("remove", true, "auto remove unused dependencies")
@@ -37,9 +37,9 @@ await yargs(hideBin(process.argv))
         .alias("w", "watch")
         .boolean("watch")
         .default("watch", true, "watch mode")
-        .alias("d", "dryRun")
-        .boolean("dryRun")
-        .default("dryRun", false, "dry run mode"),
+        // .alias("d", "dry")
+        .boolean("dry")
+        .default("dry", false, "dry run mode"),
     async (argv) => await bunAuto({ ...argv, install: false, remove: true })
   )
   .command(
@@ -50,9 +50,9 @@ await yargs(hideBin(process.argv))
         .alias("w", "watch")
         .boolean("watch")
         .default("watch", true, "watch mode")
-        .alias("d", "dryRun")
-        .boolean("dryRun")
-        .default("dryRun", false, "dry run mode"),
+        // .alias("d", "dry")
+        .boolean("dry")
+        .default("dry", false, "dry run mode"),
     async (argv) => await bunAuto({ ...argv, install: true, remove: false })
   )
   .version(pkg.version)

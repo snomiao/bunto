@@ -18,7 +18,7 @@ export default async function bunAuto({
   watch = true,
   install = true,
   remove = true,
-  dryRun = false,
+  dry = false,
   signal = new AbortController().signal,
   verbose = true,
 } = {}) {
@@ -254,11 +254,11 @@ export default async function bunAuto({
     .map(async ({ installs, removes }) => {
       if (!(installs && removes)) return;
       bunPmRunning = true;
-      if (install) await bunPMCommand("install", installs, { dryRun });
-      if (remove) await bunPMCommand("remove", removes, { dryRun });
+      if (install) await bunPMCommand("install", installs, { dry });
+      if (remove) await bunPMCommand("remove", removes, { dry });
       bunPmRunning = false;
     })
     .done();
-  // watch && console.log("[Bun Auto] Watching...");
+  watch && console.log("[Bun Auto] First Scanning Done, Start Watching...");
   console.log("[Bun Auto] All done!");
 }
