@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.4.12](https://github.com/snomiao/bun-auto/compare/v1.4.11...v1.4.12) (2024-08-12)
+
 ## [1.4.11](https://github.com/snomiao/bun-auto/compare/v1.4.10...v1.4.11) (2024-08-12)
 
 ## [1.4.10](https://github.com/snomiao/bun-auto/compare/v1.4.9...v1.4.10) (2024-08-12)
