@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.4.6](https://github.com/snomiao/bun-auto/compare/v1.4.5...v1.4.6) (2024-08-12)
+
+
+### Bug Fixes
+
+* **createIgnoreFilter.ts:** add defaultIgnores ([9a5bbd3](https://github.com/snomiao/bun-auto/commit/9a5bbd352e069b06c614f641e341f9d8e3ecb945))
+
 ## [1.4.5](https://github.com/snomiao/bun-auto/compare/v1.4.4...v1.4.5) (2024-08-05)
 
 ## [1.4.4](https://github.com/snomiao/bun-auto/compare/v1.4.3...v1.4.4) (2024-08-05)
