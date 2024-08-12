@@ -2,11 +2,12 @@
 import ignore from "ignore";
 import path from "path";
 import DIE from "phpdie";
-import { difference, keys, sortBy } from "rambda";
+import { difference, keys, sortBy, uniq } from "rambda";
 import { regexMapper } from "regex-mapper";
 import { nil, sf } from "sflow";
 import { bunPMCommand } from "./bunPMCommand";
-import { yaml } from "./import-helpers";
+import { hackNextJSPath } from "./globflow";
+import { fsp, yaml } from "./import-helpers";
 import pkg from "./package.json";
 import type { PartialUnion } from "./PartialUnion";
 if (import.meta.main) {
@@ -88,7 +89,19 @@ export default async function bunAuto({
     .chunk()
     .map((e) => e.join("\n"))
     .toAtLeastOne();
-  const pkgs = sf(new Bun.Glob(config.pkgsPattern).scan({ dot: true }))
+  const pkgsReadyFlag = Promise.withResolvers();
+  const pkgsGlob = new Bun.Glob(config.pkgsPattern);
+  const pkgs = sf(
+    sf(pkgsGlob.scan({ dot: true })).onFlush(() => pkgsReadyFlag.resolve()),
+    ...(!watch
+      ? []
+      : [
+          sf(fsp.watch(".", { recursive: true, signal }))
+            .map((e) => e.filename)
+            .filter(),
+        ])
+  )
+    .filter((f) => pkgsGlob.match(hackNextJSPath(f)))
     .filter((f) => ignoreFilter(f))
     .pMap(async (f) => [f, await Bun.file(f).text()] as const)
     .reduce(
@@ -110,8 +123,19 @@ export default async function bunAuto({
         return { dir, scriptsStr, pkgDeps };
       });
     });
-
-  const imports = sf(new Bun.Glob(config.codesPattern).scan({ dot: true }))
+  const importsReadyFlag = Promise.withResolvers();
+  const codesGlob = new Bun.Glob(config.codesPattern);
+  const imports = sf(
+    sf(codesGlob.scan({ dot: true })).onFlush(() => importsReadyFlag.resolve()),
+    ...(!watch
+      ? []
+      : [
+          sf(fsp.watch(".", { recursive: true, signal }))
+            .map((e) => e.filename)
+            .filter(),
+        ])
+  )
+    .filter((f) => codesGlob.match(hackNextJSPath(f)))
     .filter((f) => ignoreFilter(f))
     .reduce(async (m, f: string): Promise<Map<string, string[]>> => {
       const content = await Bun.file(f).text().catch(nil);
@@ -162,6 +186,9 @@ export default async function bunAuto({
     .map((e) => e as PartialUnion<typeof e>)
     .reduce((acc, e) => ({ ...acc, ...e }))
     .filter(({ imports, pkgs }) => imports && pkgs)
+    .filter(async () => await pkgsReadyFlag.promise)
+    .filter(async () => await importsReadyFlag.promise)
+    .debounce(100)
     .map(async function resolveActions({ imports, pkgs }) {
       if (!(imports && pkgs)) DIE("filtered");
       const processedFiles = new Set<string>();
@@ -210,47 +237,47 @@ export default async function bunAuto({
       return { installs, removes };
     })
     .filter()
-    // // TODO: optimize this delta stage, maybe unwind before this stage
-    // .reduce(
-    //   (s, a) => ({
-    //     ...s,
-    //     delta: {
-    //       installs: new Map(
-    //         uniq([...s.installs.keys(), ...a.installs.keys()]).map(
-    //           (key) =>
-    //             [
-    //               key,
-    //               difference(
-    //                 a.installs.get(key) ?? [],
-    //                 s.installs.get(key) ?? []
-    //               ),
-    //             ] as const
-    //         )
-    //       ),
-    //       removes: new Map(
-    //         uniq([...s.removes.keys(), ...a.removes.keys()]).map(
-    //           (key) =>
-    //             [
-    //               key,
-    //               difference(
-    //                 a.removes.get(key) ?? [],
-    //                 s.removes.get(key) ?? []
-    //               ),
-    //             ] as const
-    //         )
-    //       ),
-    //     },
-    //   }),
-    //   {
-    //     installs: new Map<string, string[]>(),
-    //     removes: new Map<string, string[]>(),
-    //     delta: {
-    //       installs: new Map<string, string[]>(),
-    //       removes: new Map<string, string[]>(),
-    //     },
-    //   }
-    // )
-    // .map(e=>e.delta)
+    // TODO: optimize this delta stage, maybe unwind before this stage
+    .reduce(
+      (s, a) => ({
+        ...s,
+        delta: {
+          installs: new Map(
+            uniq([...s.installs.keys(), ...a.installs.keys()]).map(
+              (key) =>
+                [
+                  key,
+                  difference(
+                    a.installs.get(key) ?? [],
+                    s.installs.get(key) ?? []
+                  ),
+                ] as const
+            )
+          ),
+          removes: new Map(
+            uniq([...s.removes.keys(), ...a.removes.keys()]).map(
+              (key) =>
+                [
+                  key,
+                  difference(
+                    a.removes.get(key) ?? [],
+                    s.removes.get(key) ?? []
+                  ),
+                ] as const
+            )
+          ),
+        },
+      }),
+      {
+        installs: new Map<string, string[]>(),
+        removes: new Map<string, string[]>(),
+        delta: {
+          installs: new Map<string, string[]>(),
+          removes: new Map<string, string[]>(),
+        },
+      }
+    )
+    .map((e) => e.delta)
     .map(async ({ installs, removes }) => {
       if (!(installs && removes)) return;
       bunPmRunning = true;

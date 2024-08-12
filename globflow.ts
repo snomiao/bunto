@@ -1,5 +1,4 @@
 import { Glob } from "bun";
-import fs from "fs/promises";
 import { globby } from "globby";
 import path from "path";
 import { filter, map } from "rambda";
@@ -30,17 +29,12 @@ export function globflow(
       //       .chunk(1)
       // )
       // .abort(signal)
-      .map(
-        filter((f) =>
-          glob.match(
-            f.replace(
-              /\/\[\.+([^\/]*?)\]/,
-              "/$1" /* hack for nextjs [...], cannot be matched by bun glob*/
-            )
-          )
-        )
-      )
+      .map(filter((f) => glob.match(hackNextJSPath(f))))
       .map(map((f) => path.relative(cwd, f)))
       .map(map((f) => f.replace(/\\/g, "/")))
   );
+}
+export function hackNextJSPath(f: string): string {
+  /* hack for nextjs [...], cannot be matched by bun glob*/
+  return f.replace(/\/\[\.+([^\/]*?)\]/, "/$1");
 }
