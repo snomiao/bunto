@@ -184,12 +184,12 @@ export default async function bunAuto({
       m.set(f, deps);
       return m;
     }, new Map<string, string[]>());
-  (async function () {
+  (async function watchingMessage() {
+    if (!watch) return;
     await pkgsReadyFlag.promise;
     await importsReadyFlag.promise;
-    watch && console.log("[Bun Auto] Watching...");
+    console.log("[Bun Auto] Watching... (-w=false to turn off watching mode)");
   })();
-
   await sf(
     pkgs.map((pkgs) => ({ pkgs })),
     imports.map((imports) => ({ imports }))
