@@ -13,7 +13,7 @@ export function createIgnoreFilter({
   /* must start with ./ , eg. ./.{prettier,git}ignore */
   pattern?: string;
 }) {
-  const defaultIgnores = ['./.git']
+  const defaultIgnores = ['./.git'] // ignore file
   // globby("./**/.gitignore",{ig})
   const ret = Promise.withResolvers<(filename: string) => boolean>();
   /* TODO: ignore ignorefiles it self */

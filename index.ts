@@ -2,14 +2,13 @@
 import ignore from "ignore";
 import path from "path";
 import DIE from "phpdie";
-import { difference, keys, sortBy, uniq } from "rambda";
+import { difference, keys, sortBy } from "rambda";
+import { regexMapper } from "regex-mapper";
 import { nil, sf } from "sflow";
 import { bunPMCommand } from "./bunPMCommand";
 import { yaml } from "./import-helpers";
-import { logError } from "./logError";
 import pkg from "./package.json";
 import type { PartialUnion } from "./PartialUnion";
-import { wait } from "./wait";
 if (import.meta.main) {
   await bunAuto();
 }
@@ -57,7 +56,9 @@ export default async function bunAuto({
     ...onlyTypeImports,
   ]);
 
-  const ignoreFilter = await sf(new Bun.Glob(config.ignoreFilesPattern).scan({ dot: true }))
+  const ignoreFilter = await sf(
+    new Bun.Glob(config.ignoreFilesPattern).scan({ dot: true })
+  )
     .pMap(async (f) => [f, await Bun.file(f).text().catch(nil)] as const)
     .reduce(
       (map, [k, v]) => (v ? map.set(k, v) : (map.delete(k), map)),
@@ -114,29 +115,29 @@ export default async function bunAuto({
     .filter((f) => ignoreFilter(f))
     .reduce(async (m, f: string): Promise<Map<string, string[]>> => {
       const content = await Bun.file(f).text().catch(nil);
+
       if (!content) {
         // file deleted or empty
         m.delete(f);
         return m;
       }
-      const deps = (
-        await wait(() => {
-          if (f.endsWith(".tsx"))
-            return new Bun.Transpiler({ loader: "tsx" }).scan(content);
-          if (f.endsWith(".ts"))
-            return new Bun.Transpiler({ loader: "ts" }).scan(content);
-          if (f.endsWith(".jsx"))
-            return new Bun.Transpiler({ loader: "jsx" }).scan(content);
-          if (f.endsWith(".js"))
-            return new Bun.Transpiler({ loader: "js" }).scan(content);
-          if (f.endsWith(".mjs"))
-            return new Bun.Transpiler({ loader: "js" }).scan(content);
-          if (f.endsWith(".cjs"))
-            return new Bun.Transpiler({ loader: "js" }).scan(content);
-          DIE("unknown ext in " + f);
-        }).catch(logError("[" + f + "]"))
-      )?.imports
-        .map((e) => e.path)
+
+      const typeImports = [
+        ...content.matchAll(/^import type .* from "(.*?)";$/gm),
+      ].map((m) => m[1]);
+      const loader =
+        regexMapper({
+          tsx: /\.tsx$/,
+          ts: /\.ts$/,
+          jsx: /\.jsx$/,
+          js: /\.(?:mjs|cjs|js)$/,
+        })(f) ?? DIE("Unknown loader for " + f);
+      const deps = [
+        ...new Bun.Transpiler({ loader })
+          .scan(content)
+          .imports.map((e) => e.path),
+        ...typeImports,
+      ]
         .filter((f) => !f.startsWith(".")) // file relative
         .filter((f) => !f.startsWith("@/")) // root alias
         .filter((f) => !f.startsWith("~/")) // root alias
@@ -209,47 +210,48 @@ export default async function bunAuto({
       return { installs, removes };
     })
     .filter()
-    // TODO: optimize this delta stage, maybe unwind before this stage
-    .reduce(
-      (s, a) => ({
-        ...s,
-        delta: {
-          installs: new Map(
-            uniq([...s.installs.keys(), ...a.installs.keys()]).map(
-              (key) =>
-                [
-                  key,
-                  difference(
-                    a.installs.get(key) ?? [],
-                    s.installs.get(key) ?? []
-                  ),
-                ] as const
-            )
-          ),
-          removes: new Map(
-            uniq([...s.removes.keys(), ...a.removes.keys()]).map(
-              (key) =>
-                [
-                  key,
-                  difference(
-                    a.removes.get(key) ?? [],
-                    s.removes.get(key) ?? []
-                  ),
-                ] as const
-            )
-          ),
-        },
-      }),
-      {
-        installs: new Map<string, string[]>(),
-        removes: new Map<string, string[]>(),
-        delta: {
-          installs: new Map<string, string[]>(),
-          removes: new Map<string, string[]>(),
-        },
-      }
-    )
-    .map(async ({ delta: { installs, removes } }) => {
+    // // TODO: optimize this delta stage, maybe unwind before this stage
+    // .reduce(
+    //   (s, a) => ({
+    //     ...s,
+    //     delta: {
+    //       installs: new Map(
+    //         uniq([...s.installs.keys(), ...a.installs.keys()]).map(
+    //           (key) =>
+    //             [
+    //               key,
+    //               difference(
+    //                 a.installs.get(key) ?? [],
+    //                 s.installs.get(key) ?? []
+    //               ),
+    //             ] as const
+    //         )
+    //       ),
+    //       removes: new Map(
+    //         uniq([...s.removes.keys(), ...a.removes.keys()]).map(
+    //           (key) =>
+    //             [
+    //               key,
+    //               difference(
+    //                 a.removes.get(key) ?? [],
+    //                 s.removes.get(key) ?? []
+    //               ),
+    //             ] as const
+    //         )
+    //       ),
+    //     },
+    //   }),
+    //   {
+    //     installs: new Map<string, string[]>(),
+    //     removes: new Map<string, string[]>(),
+    //     delta: {
+    //       installs: new Map<string, string[]>(),
+    //       removes: new Map<string, string[]>(),
+    //     },
+    //   }
+    // )
+    // .map(e=>e.delta)
+    .map(async ({ installs, removes }) => {
       if (!(installs && removes)) return;
       bunPmRunning = true;
       if (install) await bunPMCommand("install", installs, { dryRun });
