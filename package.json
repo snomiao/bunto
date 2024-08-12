@@ -1,6 +1,6 @@
 {
   "name": "bun-auto",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "author": "snomiao <snomiao@gmail.com>",
   "exports": {
@@ -10,8 +10,8 @@
   "module": "index.ts",
   "types": "./index.ts",
   "bin": {
-    "bua": "./bin/cli.js",
-    "bun-auto": "./bin/cli.js"
+    "bua": "bin/cli.js",
+    "bun-auto": "bin/cli.js"
   },
   "files": [
     "bin",
