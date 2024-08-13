@@ -36,5 +36,5 @@ export function globflow(
 }
 export function hackNextJSPath(f: string): string {
   /* hack for nextjs [...], cannot be matched by bun glob*/
-  return f.replace(/\/\[\.+([^\/]*?)\]/, "/$1");
+  return f.replace(/\/\[\.*([^\/]*?)\]/, "/$1");
 }
