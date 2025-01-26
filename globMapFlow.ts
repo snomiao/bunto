@@ -17,7 +17,7 @@ export function globTextMapFlow(
     signal = new AbortController().signal,
   } = {}
 ) {
-  console.log('gtmf')
+  // console.log("gtmf");
   return globflow(pattern, { watch, signal, cwd, polling })
     .map(filter(_filter))
     .reduce(async (s, list) => {

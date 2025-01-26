@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 // import "dotenv";
 import ignore from "ignore";
+import pProps from "p-props";
 import path from "path";
 import DIE from "phpdie";
 import { difference, keys, sortBy, uniq } from "rambda";
@@ -9,7 +10,6 @@ import { nil, sflow } from "sflow";
 import { bunPMCommand } from "./bunPMCommand";
 import { hackNextJSPath } from "./globflow";
 import pkg from "./package.json";
-import type { PartialUnion } from "./PartialUnion";
 if (import.meta.main) {
   await bunAuto();
 }
@@ -108,7 +108,7 @@ export default async function bunAuto({
   const imports = sflow(
     sflow(codesGlob.scan({ dot: true })).onFlush(() =>
       importsReadyFlag.resolve()
-    ),
+    )
     // ...(!watch
     //   ? []
     //   : [
@@ -121,7 +121,7 @@ export default async function bunAuto({
     .map((f) => f.replace(/\\/g, "/"))
     .filter((f) => codesGlob.match(hackNextJSPath(f)))
     .filter((f) => ignoreFilter(f))
-    .log((f) => "* Code " + f)
+    // .log((f) => "* Code " + f)
     .reduce(async (m, f: string): Promise<Map<string, string[]>> => {
       const content = await Bun.file(f).text().catch(nil);
 
@@ -161,6 +161,7 @@ export default async function bunAuto({
       // parse error, wait for correct file next time, keep f state in m
       if (!deps) return m;
       m.set(f, deps);
+      console.log(`+ ${f}${+" "}${JSON.stringify(deps)}`);
       return m;
     }, new Map<string, string[]>());
   //
@@ -171,20 +172,18 @@ export default async function bunAuto({
     console.log("[Bun Auto] Watching... (-w=false to turn off watching mode)");
   })();
 
-  await sflow(
-    imports.map((imports) => ({ imports })),
-    pkgs.map((pkgs) => ({ pkgs })),
-  )
-    .map((e) => e as PartialUnion<typeof e>)
-    .reduce((acc, e) => ({ ...acc, ...e }))
-    .filter(({ imports, pkgs }) => imports && pkgs)
-    // .debounce(1000)
-    .map(async function resolveActions({ imports, pkgs }) {
-      if (!imports || !pkgs) DIE("filtered");
-      return autoInstall(imports, pkgs, notInstall, notRemove, allConfigText);
-    })
-    // .log()
-
+  const pp = await pProps({
+    imports: imports.tail(1).toExactlyOne(),
+    pkgs: pkgs.tail(1).toExactlyOne(),
+  });
+  const actions = getInstallRemoveActions(
+    pp.imports!,
+    pp.pkgs!,
+    notInstall,
+    notRemove,
+    allConfigText
+  );
+  await sflow([actions])
     .filter()
     // TODO: optimize this delta stage, maybe unwind before this stage
     .reduce(
@@ -238,7 +237,8 @@ export default async function bunAuto({
     .done();
   console.log("[Bun Auto] All done!");
 }
-function autoInstall(
+
+function getInstallRemoveActions(
   imports: Map<string, string[]>,
   pkgs: { dir: string; scriptsStr: string; pkgDeps: string[] }[],
   notInstall: Set<string>,
