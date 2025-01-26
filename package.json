@@ -2,11 +2,22 @@
   "name": "bun-auto",
   "version": "1.4.15",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
+  "keywords": [],
+  "homepage": "https://github.com/snomiao/bun-auto#readme",
+  "bugs": {
+    "url": "https://github.com/snomiao/bun-auto/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snomiao/bun-auto.git"
+  },
+  "license": "MIT",
   "author": "snomiao <snomiao@gmail.com>",
   "exports": {
     "import": "./index.ts",
     "types": "./index.ts"
   },
+  "main": "index.js",
   "module": "index.ts",
   "types": "./index.ts",
   "bin": {
@@ -26,21 +37,22 @@
     "test": "bun test"
   },
   "dependencies": {
+    "glob": "^11.0.1",
     "globby": "^14.0.1",
     "ignore": "^5.3.1",
     "p-map": "^7.0.2",
     "phpdie": "^1.2.12",
     "rambda": "^9.2.1",
     "regex-mapper": "^0.0.2",
-    "sflow": "^1.16.6",
+    "sflow": "^1.19.1",
     "yaml": "^2.4.5",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.6",
-    "@types/jest": "^29.5.12",
+    "@types/bun": "^1.1.14",
+    "@types/jest": "^29.5.14",
     "@types/yargs": "^17.0.32",
     "commit-and-tag-version": "^12.4.1",
-    "typescript": "^5.5.2"
+    "typescript": "^5.7.2"
   }
 }

@@ -17,7 +17,7 @@ await yargs(hideBin(process.argv))
       y
         .alias("w", "watch")
         .boolean("watch")
-        .default("watch", true, "watch mode")
+        .default("watch", false, "watch mode")
         // .alias("d", "dry")
         .boolean("dry")
         .default("dry", false, "dry run mode")

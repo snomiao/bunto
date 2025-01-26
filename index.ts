@@ -5,17 +5,26 @@ import path from "path";
 import DIE from "phpdie";
 import { difference, keys, sortBy, uniq } from "rambda";
 import { regexMapper } from "regex-mapper";
-import { nil, sf } from "sflow";
+import { nil, sflow } from "sflow";
 import { bunPMCommand } from "./bunPMCommand";
 import { hackNextJSPath } from "./globflow";
-import { fsp } from "./import-helpers";
 import pkg from "./package.json";
 import type { PartialUnion } from "./PartialUnion";
 if (import.meta.main) {
   await bunAuto();
 }
-
 export const bunAutoInstall = bunAuto;
+const config = {
+  nodeBuiltins:
+    "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib,worker_threads",
+  bunBuiltins: "bun,sqlite,test,main",
+  implicitImports: "typescript,react,react-dom,vue,bun,jest,node",
+  onlyTypeImports: "ts-toolbelt",
+  ignoreFilesGlob: "./**/.gitignore",
+  configsGlob: "./*{config,rc}.{ts,tsx,jsx,js,mjs,cjs,json}",
+  pkgsGlob: "./**/package.json",
+  codesGlob: "./**/*.{ts,tsx,js,jsx,mjs,cjs}",
+};
 export default async function bunAuto({
   watch = true,
   install = true,
@@ -23,33 +32,27 @@ export default async function bunAuto({
   dry = false,
   signal = new AbortController().signal,
   verbose = true,
+  watchReady = false,
 } = {}) {
   console.log("[Bun Auto] v" + pkg.version);
   let bunPmRunning = false;
-  const config = {
-    nodeBuiltins:
-      "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib,worker_threads",
-    bunBuiltins: "bun,sqlite,test,main",
-    implicitImports: "typescript,react,react-dom,vue,bun,jest,node",
-    onlyTypeImports: "ts-toolbelt",
-    ignoreFilesPattern: "./**/.gitignore",
-    configsPattern: "./*{config,rc}.{ts,tsx,jsx,js,mjs,cjs,json}",
-    pkgsPattern: "./**/package.json",
-    codesPattern: "./**/*.{ts,tsx,jsx,js,mjs,cjs}",
-  };
+
   // console.log("[Bun Auto] Conf" + yaml.stringify(config).replace(/\s+/g, " "));
 
+  // ignore buildin imports
   const nodeBuiltins = config.nodeBuiltins
     .split(",")
     .flatMap((e) => ["node:" + e, e]);
   const bunBuiltins = config.bunBuiltins
     .split(",")
     .flatMap((e) => ["bun:" + e, e]);
+  // ignore implicit imports
   const implicitImports = config.implicitImports
     .split(",")
     .flatMap((e) => ["@types/" + e, e]);
   const onlyTypeImports = config.onlyTypeImports.split(",");
 
+  // ignores pkgs
   const notInstall = new Set([...nodeBuiltins, ...bunBuiltins]);
   const notRemove = new Set([
     ...nodeBuiltins,
@@ -58,49 +61,23 @@ export default async function bunAuto({
     ...onlyTypeImports,
   ]);
 
-  const ignoreFilter = await sf(
-    new Bun.Glob(config.ignoreFilesPattern).scan({ dot: true })
-  )
-    .map(async (f) => [f, await Bun.file(f).text().catch(nil)] as const)
-    .reduce(
-      (map, [k, v]) => (v ? map.set(k, v) : (map.delete(k), map)),
-      new Map<string, string>()
-    )
-    .tail(1)
-    .map((ignoresMap) => {
-      const filters = [...ignoresMap.entries()].map(([f, text]) => {
-        // each ignore file applies to all sub folder
-        const dir = path.dirname(f);
-        const filter = ignore().add(text.split("\n")).createFilter();
-        return { dir, filter };
-      });
-      return function filter(f: string) {
-        return filters.every(({ dir, filter }) => {
-          const rel = path.relative(dir, f);
-          if (rel.startsWith("..")) return true;
-          return filter(rel);
-        });
-      };
-    })
-    .toAtLeastOne();
-  const allConfigText = await sf(
-    new Bun.Glob(config.configsPattern).scan({ dot: true })
-  )
-    .map(async (f) => [f, await Bun.file(f).text()] as const)
-    .chunk()
-    .map((e) => e.join("\n"))
-    .toAtLeastOne();
+  // ignore files
+  const ignoreFilter = await getIgnoreFilterFromGlob();
+
+  // config texts
+  const allConfigText = await getAllTextFromGlob(config.configsGlob);
+
   const pkgsReadyFlag = Promise.withResolvers();
-  const pkgsGlob = new Bun.Glob(config.pkgsPattern);
-  const pkgs = sf(
-    sf(pkgsGlob.scan({ dot: true })).onFlush(() => pkgsReadyFlag.resolve()),
-    ...(!watch
-      ? []
-      : [
-          sf(fsp.watch(".", { recursive: true, signal }))
-            .map((e) => e.filename)
-            .filter(),
-        ])
+  const pkgsGlob = new Bun.Glob(config.pkgsGlob);
+  const pkgs = sflow(
+    sflow(pkgsGlob.scan({ dot: true })).onFlush(() => pkgsReadyFlag.resolve())
+    // ...(!watch
+    //   ? []
+    //   : [
+    //       sflow(fsp.watch(".", { recursive: true, signal }))
+    //         .map((e) => e.filename)
+    //         .filter(),
+    //     ])
   )
     .map((e) => "./" + path.relative(process.cwd(), e))
     .map((f) => f.replace(/\\/g, "/"))
@@ -127,16 +104,18 @@ export default async function bunAuto({
       });
     });
   const importsReadyFlag = Promise.withResolvers();
-  const codesGlob = new Bun.Glob(config.codesPattern);
-  const imports = sf(
-    sf(codesGlob.scan({ dot: true })).onFlush(() => importsReadyFlag.resolve()),
-    ...(!watch
-      ? []
-      : [
-          sf(fsp.watch(".", { recursive: true, signal }))
-            .map((e) => e.filename)
-            .filter(),
-        ])
+  const codesGlob = new Bun.Glob(config.codesGlob);
+  const imports = sflow(
+    sflow(codesGlob.scan({ dot: true })).onFlush(() =>
+      importsReadyFlag.resolve()
+    ),
+    // ...(!watch
+    //   ? []
+    //   : [
+    //       sflow(fsp.watch(".", { recursive: true, signal }))
+    //         .map((e) => e.filename)
+    //         .filter(),
+    //     ])
   )
     .map((e) => "./" + path.relative(process.cwd(), e))
     .map((f) => f.replace(/\\/g, "/"))
@@ -184,66 +163,25 @@ export default async function bunAuto({
       m.set(f, deps);
       return m;
     }, new Map<string, string[]>());
+  //
   (async function watchingMessage() {
     if (!watch) return;
     await pkgsReadyFlag.promise;
     await importsReadyFlag.promise;
     console.log("[Bun Auto] Watching... (-w=false to turn off watching mode)");
   })();
-  await sf(
+
+  await sflow(
+    imports.map((imports) => ({ imports })),
     pkgs.map((pkgs) => ({ pkgs })),
-    imports.map((imports) => ({ imports }))
   )
     .map((e) => e as PartialUnion<typeof e>)
     .reduce((acc, e) => ({ ...acc, ...e }))
     .filter(({ imports, pkgs }) => imports && pkgs)
-    .debounce(1000)
+    // .debounce(1000)
     .map(async function resolveActions({ imports, pkgs }) {
-      if (!(imports && pkgs)) DIE("filtered");
-      const processedFiles = new Set<string>();
-      const installs = new Map<string, string[]>();
-      const removes = new Map<string, string[]>();
-      // sort by pkg level, process deepest first
-      sortBy(({ dir }) => -dir.split("/").length, pkgs).map(
-        ({ dir, pkgDeps, scriptsStr }) => {
-          const scriptDeps = pkgDeps.filter((dep) => scriptsStr.includes(dep));
-
-          const pkgImports = [...imports.entries()]
-            .map(([file, imports]) => {
-              const rel = path.relative(dir, file);
-              if (rel.startsWith("..")) return;
-              if (processedFiles.has(file)) return;
-              processedFiles.add(file);
-              return imports;
-            })
-            .flatMap((e) => (e ? [e] : []))
-            .flat();
-
-          const install = difference(pkgImports, pkgDeps).filter(
-            (dep) => !notInstall.has(dep)
-          );
-          const remove = difference(pkgDeps, pkgImports)
-            .filter((dep) => !notRemove.has(dep))
-            .filter((dep) => !dep.startsWith("prettier-plugin-"))
-            .filter((dep) => !dep.startsWith("eslint-config-"))
-            .filter((dep) => !scriptDeps.includes(dep))
-            .filter((dep) => !allConfigText.includes(dep))
-            .filter(
-              (dep) => !pkgImports.map((e) => "@types/" + e).includes(dep)
-            );
-          // install to dir
-          install.forEach((dep) => {
-            if (!installs.has(dir)) installs.set(dir, []);
-            installs.get(dir)!.push(dep);
-          });
-          // remove from dir
-          remove.forEach((dep) => {
-            if (!removes.has(dir)) removes.set(dir, []);
-            removes.get(dir)!.push(dep);
-          });
-        }
-      );
-      return { installs, removes };
+      if (!imports || !pkgs) DIE("filtered");
+      return autoInstall(imports, pkgs, notInstall, notRemove, allConfigText);
     })
     // .log()
 
@@ -299,4 +237,89 @@ export default async function bunAuto({
     })
     .done();
   console.log("[Bun Auto] All done!");
+}
+function autoInstall(
+  imports: Map<string, string[]>,
+  pkgs: { dir: string; scriptsStr: string; pkgDeps: string[] }[],
+  notInstall: Set<string>,
+  notRemove: Set<string>,
+  allConfigText: string
+) {
+  const notRemovePattern = /^prettier-plugin-|^eslint-config-/;
+  const processedFiles = new Set<string>();
+  const installs = new Map<string, string[]>();
+  const removes = new Map<string, string[]>();
+  // sort by pkg level, process deepest first
+  sortBy(({ dir }) => -dir.split("/").length, pkgs).map(
+    ({ dir, pkgDeps, scriptsStr }) => {
+      const scriptDeps = pkgDeps.filter((dep) => scriptsStr.includes(dep));
+
+      const pkgImports = [...imports.entries()]
+        .map(([file, imports]) => {
+          const rel = path.relative(dir, file);
+          if (rel.startsWith("..")) return;
+          if (processedFiles.has(file)) return;
+          processedFiles.add(file);
+          return imports;
+        })
+        .flatMap((e) => (e ? [e] : []))
+        .flat();
+
+      const install = difference(pkgImports, pkgDeps).filter(
+        (dep) => !notInstall.has(dep)
+      );
+      const remove = difference(pkgDeps, pkgImports)
+        .filter((dep) => !notRemove.has(dep))
+        .filter((dep) => !dep.match(notRemovePattern))
+        .filter((dep) => !scriptDeps.includes(dep))
+        .filter((dep) => !allConfigText.includes(dep))
+        .filter((dep) => !pkgImports.map((e) => "@types/" + e).includes(dep));
+      // install to dir
+      install.forEach((dep) => {
+        if (!installs.has(dir)) installs.set(dir, []);
+        installs.get(dir)!.push(dep);
+      });
+      // remove from dir
+      remove.forEach((dep) => {
+        if (!removes.has(dir)) removes.set(dir, []);
+        removes.get(dir)!.push(dep);
+      });
+    }
+  );
+  return { installs, removes };
+}
+
+function getAllTextFromGlob(configsGlob: string) {
+  return sflow(new Bun.Glob(configsGlob).scan({ dot: true }))
+    .map(async (f) => [f, await Bun.file(f).text()] as const)
+    .chunk()
+    .map((e) => e.join("\n"))
+    .toExactlyOne()!;
+}
+
+async function getIgnoreFilterFromGlob(): Promise<(f: string) => boolean> {
+  const ignoreFilesGlob = config.ignoreFilesGlob;
+  return await sflow(new Bun.Glob(ignoreFilesGlob).scan({ dot: true }))
+    .map(async (f) => [f, await Bun.file(f).text().catch(nil)] as const)
+    .reduce(
+      (map, [k, v]) => (v ? map.set(k, v) : (map.delete(k), map)),
+      new Map<string, string>()
+    )
+    .tail(1)
+    .map((ignoresMap) => {
+      const filters = [...ignoresMap.entries()].map(([f, text]) => {
+        // each ignore file applies to all sub folder
+        const dir = path.dirname(f);
+        const filter = ignore().add(text.split("\n")).createFilter();
+        return { dir, filter };
+      });
+      return function filter(f: string) {
+        return filters.every(({ dir, filter }) => {
+          const rel = path.relative(dir, f);
+          if (rel.startsWith("..")) return true;
+          return filter(rel);
+        });
+      };
+    })
+    .toExactlyOne()!;
 }
