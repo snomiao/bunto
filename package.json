@@ -1,15 +1,15 @@
 {
-  "name": "bun-auto",
+  "name": "bunto",
   "version": "1.4.15",
   "description": "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding.",
   "keywords": [],
-  "homepage": "https://github.com/snomiao/bun-auto#readme",
+  "homepage": "https://github.com/snomiao/bunto#readme",
   "bugs": {
-    "url": "https://github.com/snomiao/bun-auto/issues"
+    "url": "https://github.com/snomiao/bunto/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/snomiao/bun-auto.git"
+    "url": "git+https://github.com/snomiao/bunto.git"
   },
   "license": "MIT",
   "author": "snomiao <snomiao@gmail.com>",
@@ -21,8 +21,7 @@
   "module": "index.ts",
   "types": "./index.ts",
   "bin": {
-    "bua": "bin/cli.js",
-    "bun-auto": "bin/cli.js"
+    "bunto": "bin/cli.js"
   },
   "files": [
     "bin",
