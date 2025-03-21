@@ -7,9 +7,9 @@ import pkg from "./package.json";
 await yargs(hideBin(process.argv))
   .scriptName(pkg.name)
   .usage("$0 <cmd> [args]")
-  .example('$0', 'auto manage all dependencies and watching for changes')
-  .example('$0 i', 'install all missing dependencies and watching for changes')
-  .example('$0 r', 'remove all unnessecery dependencies and watching for changes')
+  .example("$0", "auto manage all dependencies")
+  .example("$0 i", "install all missing dependencies")
+  .example("$0 r", "remove all unnessecery dependencies")
   .command(
     ["*", "auto"],
     "bun auto manage dependencies",
