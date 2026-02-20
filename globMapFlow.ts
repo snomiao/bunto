@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import pMap from "p-map";
 import { filter } from "rambda";
-import { globflow } from "./globflow";
+import { globFlow } from "./globWatch";
 import { nil } from "./nil";
 if (import.meta.main) {
   globTextMapFlow("./**/package.json").log().done();
@@ -18,7 +18,7 @@ export function globTextMapFlow(
   } = {}
 ) {
   // console.log("gtmf");
-  return globflow(pattern, { watch, signal, cwd, polling })
+  return globFlow(pattern, { watch, signal, cwd, polling })
     .map(filter(_filter))
     .reduce(async (s, list) => {
       await pMap(list, async (f) => {

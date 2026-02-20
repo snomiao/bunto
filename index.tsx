@@ -4,17 +4,24 @@ import ignore from "ignore";
 import pProps from "p-props";
 import path from "path";
 import DIE from "phpdie";
-import { difference, keys, sortBy, uniq } from "rambda";
+import { difference, filter, keys, sortBy, tryCatch, union, uniq } from "rambda";
 import { regexMapper } from "regex-mapper";
-import { nil, sflow } from "sflow";
+import { nil, reduces, sf, sflow } from "sflow";
 import { bunPMCommand } from "./bunPMCommand";
-import { hackNextJSPath } from "./globflow";
+import { globFlow, mapChanges } from "./globWatch";
 import pkg from "./package.json";
+import { text } from "stream/consumers";
+import pMap from "p-map";
+import promiseAllProperties from "promise-all-properties";
+import { render } from 'ink'
+import { useEffect, useState } from "react";
+
 if (import.meta.main) {
-  await bunAuto();
+  await bunAuto({ watch: true })
 }
 export const bunAutoInstall = bunAuto;
-const config = {
+
+const cfg = {
   nodeBuiltins:
     "assert,buffer,child_process,cluster,crypto,dgram,dns,domain,events,fs,http,https,net,os,path,punycode,querystring,readline,stream,string_decoder,timers,tls,tty,url,util,v8,vm,zlib,worker_threads",
   bunBuiltins: "bun,sqlite,test,main",
@@ -25,7 +32,73 @@ const config = {
   pkgsGlob: "./**/package.json",
   codesGlob: "./**/*.{ts,tsx,js,jsx,mjs,cjs}",
 };
-export default async function bunAuto({
+
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
+
+export default function bunAuto({ watch = true, cwd = process.cwd() } = {}) {
+  const pkgs = globFlow(cfg.pkgsGlob)
+    .reduce((map, { added, changed, deleted }) => {
+      added.forEach(({ path }) => map.set(path, config))
+      return map
+    }, new Map<string, string>())
+
+  const imports = globFlow(cfg.codesGlob)
+    .map(({ added, changed, deleted }) => {
+      pkgs.latest()
+    })
+  const [installed, notRemove] = globFlow(cfg.pkgsGlob)
+    .map(getDeps)
+
+  const ignoreFlow = globFlow(cfg.ignoreFilesGlob)
+  
+  const configsFlow = globFlow(cfg.configsGlob).reduce((map, { added, changed, deleted }) => {
+    added.forEach(({ path }) => map.set(path, config))
+    return map
+  }, new Map<string, string>())
+
+  const installedFlow = globFlow(cfg.pkgsGlob)
+  .reduce((map, { added, changed, deleted }) => {
+    added.forEach(({ path }) => map.set(path, config))
+    return map
+  }, new Map<string, string>())
+  
+  const importsFlow = globFlow(cfg.codesGlob)
+  .reduce((map, { added, changed, deleted }) => {
+    added.forEach(({ path }) => map.set(path, config))
+    return map
+  }, new Map<string, string>())
+
+  // 
+  return sflow(
+    installedFlow.map(v => ({ installed: v })),
+    importsFlow.map(v => ({ imports: v })),
+  )
+    .map((e) => e as UnionToIntersection<typeof e>)
+    .filter(({ imports, installed }) => [imports, installed].every(Boolean))
+    .map(async ({ imports, installed }) => {
+      const install = difference(imports, installed)
+      const remove = difference(installed, imports)
+      return { install, remove }
+    })
+    .map(async ({ install, remove }) => {
+      if (install.length > 0) {
+        console.log("[Bun Auto] Installing: ", install.join(", "));
+        if (watch) {
+          await bunPMCommand("install", install, { dry: false });
+        }
+      }
+      if (remove.length > 0) {
+        console.log("[Bun Auto] Removing: ", remove.join(", "));
+        if (watch) {
+          await bunPMCommand("remove", remove, { dry: false });
+        }
+      }
+    })
+    .run()
+}
+
+
+async function useBunAuto({
   watch = true,
   install = true,
   remove = true,
@@ -35,8 +108,6 @@ export default async function bunAuto({
   watchReady = false,
 } = {}) {
   console.log("[Bun Auto] v" + pkg.version);
-  let bunPmRunning = false;
-
   // console.log("[Bun Auto] Conf" + yaml.stringify(config).replace(/\s+/g, " "));
 
   // ignore buildin imports
@@ -62,10 +133,17 @@ export default async function bunAuto({
   ]);
 
   // ignore files
-  const ignoreFilter = await getIgnoreFilterFromGlob();
+  const ignoreFilterFlow = createIgnoreFilterFlow()
+  pkgsFlow = ignoreFilterFlow
+    .map(
+      (filter) => (f: string) => {
+        // filter out ignored files
+        return filter(f) && !f.match(/node_modules/);
+      }
+    )
 
   // config texts
-  const allConfigText = await getAllTextFromGlob(config.configsGlob);
+  const allConfigText = await getAllTextFromGlob(config.configsGlob)
 
   const pkgsReadyFlag = Promise.withResolvers();
   const pkgsGlob = new Bun.Glob(config.pkgsGlob);
@@ -94,7 +172,7 @@ export default async function bunAuto({
         // each pkg file applies to none of sub packages, sub packages manages them selves
         const dir = path.dirname(pkgFile);
         const pkgModules = dir + "/node_modules"; // should bun i to install if not existed
-        const pkg = JSON.parse(pkgJson);
+        const pkg = tryCatch(JSON.parse, () => null)(pkgJson)
         const scriptsStr = Object.values(pkg.scripts || {}).join("\n");
         const pkgDeps = keys(pkg)
           .filter((k) => k.match(/dependencies$/i))
@@ -102,7 +180,8 @@ export default async function bunAuto({
           .flat();
         return { dir, scriptsStr, pkgDeps };
       });
-    });
+    })
+  const jsonSafeParse = tryCatch(JSON.parse, () => null);
   const importsReadyFlag = Promise.withResolvers();
   const codesGlob = new Bun.Glob(config.codesGlob);
   const imports = sflow(
@@ -183,6 +262,7 @@ export default async function bunAuto({
     notRemove,
     allConfigText
   );
+
   await sflow([actions])
     .filter()
     // TODO: optimize this delta stage, maybe unwind before this stage
@@ -297,15 +377,31 @@ function getAllTextFromGlob(configsGlob: string) {
     .toExactlyOne()!;
 }
 
-async function getIgnoreFilterFromGlob(): Promise<(f: string) => boolean> {
+/**
+ * create a filter function from glob ignore files
+ * 
+ * the filter function is live 
+ * @returns 
+ */
+function createIgnoreFilterFlow() {
   const ignoreFilesGlob = config.ignoreFilesGlob;
-  return await sflow(new Bun.Glob(ignoreFilesGlob).scan({ dot: true }))
-    .map(async (f) => [f, await Bun.file(f).text().catch(nil)] as const)
+  return globFlow(ignoreFilesGlob)
+    // read file text
+    .map(async ({ added, changed, deleted }) => promiseAllProperties({
+      added: pMap(added, async (e) => ({ ...e, text: await getText(e.path) })),
+      changed: pMap(changed, async (e) => ({ ...e, text: await getText(e.path) })),
+      deleted: deleted.map((e) => ({ ...e, })),
+    }))
+    // map of text
     .reduce(
-      (map, [k, v]) => (v ? map.set(k, v) : (map.delete(k), map)),
-      new Map<string, string>()
+      async (map, { added, changed, deleted }) => {
+        added.forEach((f) => map.set(f.path, f.text));
+        changed.forEach((f) => map.set(f.path, f.text))
+        deleted.forEach((f) => map.delete(f.path));
+        return map
+      }, new Map<string, string>()
     )
-    .tail(1)
+    // create filter
     .map((ignoresMap) => {
       const filters = [...ignoresMap.entries()].map(([f, text]) => {
         // each ignore file applies to all sub folder
@@ -321,5 +417,39 @@ async function getIgnoreFilterFromGlob(): Promise<(f: string) => boolean> {
         });
       };
     })
-    .toExactlyOne()!;
+  // .reduce((filter, curr) => {
+  //   filter.update()
+  //   return filter
+  // }, createLazyImplFunction<(f: string) => boolean>())
+  // .limit(1, { terminate: false })
+  // .toFirst()
+}
+async function tryText(f: string): Promise<string | null> {
+  return await Bun.file(f).text().catch(nil);
+}
+async function getText(f: string): Promise<string> {
+  return await Bun.file(f).text();
+}
+
+
+function createLazyImplFunction<T extends (...args: any[]) => any>(): T {
+  let impl: T | null = null;
+  return new Proxy(
+    (...args: any[]): any => {
+      if (impl) {
+        return impl(...args);
+      }
+      throw new Error("Function not implemented yet, call update() to set the implementation");
+    },
+    {
+      get(target, prop) {
+        if (prop === "update") {
+          return (newImpl: T) => {
+            impl = newImpl;
+          };
+        }
+        return target[prop as keyof typeof target];
+      },
+    }
+  ) as T;
 }
