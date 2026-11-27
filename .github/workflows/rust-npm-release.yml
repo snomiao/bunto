@@ -1,0 +1,59 @@
+# Builds the Rust `bunto` binary for every platform, packs it together with
+# the JavaScript the package ships (bin/cli.js, which `bun run build` bundles
+# from cli.ts), and checks on Linux, macOS and Windows (x64 and arm64) that
+# `bun i -g` / `npm i -g` gives a working `bunto` command.
+#
+# The binary hands every command back to bin/cli.js, so nothing changes for
+# users; the smoke lines marked [handback] fail unless it did. They only ask
+# for help, or make a usage error: plain `bunto` would scan the current
+# directory and install or remove packages there.
+#
+# It does not publish. Releases still go through semantic-release.yml.
+#
+# The pipeline lives in https://github.com/snomiao/rustify.
+
+name: rust-npm-release
+
+on:
+  pull_request:
+    # The TypeScript is listed too: it is bundled into what this packs, and
+    # once a `parity:` test exists, a change on either side has to rerun it.
+    paths:
+      - "rs/**"
+      - "**.ts"
+      - "**.tsx"
+      - "**.mts"
+      - "**.cts"
+      - "**.js"
+      - "**.jsx"
+      - "**.mjs"
+      - "**.cjs"
+      - "notNeededPackages.json"
+      - "bun.lock"
+      - "package.json"
+      - ".github/workflows/rust-npm-release.yml"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to build, without a leading v (default: the version in rs/Cargo.toml)"
+        required: false
+        type: string
+
+jobs:
+  build:
+    uses: snomiao/rustify/.github/workflows/rust-npm-build.yml@releases/v1
+    with:
+      manifest: rs/Cargo.toml
+      bins: bunto
+      version: ${{ inputs.version }}
+      # bin/cli.js is a build product (bin/ is not in git). --ignore-scripts
+      # skips `prepare` (husky), which the build does not need.
+      js-build: bun install --frozen-lockfile --ignore-scripts && bun run build
+      # yargs answers --help without starting any work.
+      smoke: bunto --help
+      smoke-expect: bun auto manage dependencies
+      smoke-extra: |
+        [handback] bunto --help => Remove all unused dependencies
+        [handback] bunto install --help => Install all missing dependencies
+        [handback] bunto r --help => Remove all unused dependencies
+        [1] [handback] bunto --nope => Unknown argument: nope
