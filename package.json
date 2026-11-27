@@ -61,5 +61,12 @@
     "husky": "^9.1.7",
     "semantic-release": "^24.2.1",
     "typescript": "^5.7.2"
+  },
+  "rustify": {
+    "mode": "hybrid",
+    "bins": {
+      "bunto": "bunto"
+    },
+    "rootEnv": "BUNTO_PACKAGE_ROOT"
   }
 }

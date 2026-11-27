@@ -1,0 +1,15 @@
+[package]
+name = "bunto"
+version = "0.0.0"
+edition = "2021"
+description = "Auto Install Packages and types definitions as you code, ZEN-MODE for ts/js coding."
+license = "MIT"
+
+[[bin]]
+name = "bunto"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+strip = true
