@@ -1,0 +1,55 @@
+#!/bin/sh
+# Starts the command under test for one parity case, in front of both
+# implementations:
+#
+#   sh rs/parity/run.sh bun bin/cli.js [args…]                    the TypeScript
+#   env BUNTO_PACKAGE_ROOT=<repo> sh rs/parity/run.sh <bunto> [args…]  the binary
+#
+# It puts rs/parity/shim first on PATH. Its `bun` writes every `bun install`,
+# `bun add`, `bun remove` (and the other commands that change a project) to
+# $PARITY_BUN_LOG with the directory it was asked in, and runs none of them;
+# everything else goes to the real bun. So a case can show what bunto would
+# have installed or removed, and no case installs anything. (On Windows a
+# program that is not a shell finds bun as bun.exe, past this stand-in; the
+# cases that could reach an install also point the registry at a closed
+# port, see rs/parity.gen.mjs.)
+#
+# These variables of a case steer it, and are not passed on:
+#
+#   X_PKG=<dir>    use the copy of the package in <dir> (a case's setup made
+#                  it): the TypeScript runs <dir>/bin/cli.js, and the binary
+#                  gets BUNTO_PACKAGE_ROOT=<dir>. Under the runner's
+#                  --handback check the copy takes the stand-in package's
+#                  entry first, so that reaching the JavaScript still shows.
+#   X_COLS=<n>     make the terminal <n> columns wide (a case with "tty").
+#   X_GONE=1       start the command in a directory that has been removed.
+set -eu
+
+here=$(cd "$(dirname "$0")" && pwd)
+PARITY_REAL_BUN=$(command -v bun)
+PATH="$here/shim:$PATH"
+export PARITY_REAL_BUN PATH
+
+if [ -n "${X_PKG-}" ]; then
+  if [ "$1" = bun ]; then
+    shift 2
+    set -- bun "$X_PKG/bin/cli.js" "$@"
+  fi
+  if [ -n "${BUNTO_PACKAGE_ROOT-}" ]; then
+    if grep -q '"stand-in"' "$BUNTO_PACKAGE_ROOT/package.json" 2> /dev/null; then
+      cp "$BUNTO_PACKAGE_ROOT/bin/cli.js" "$X_PKG/bin/cli.js"
+    fi
+    BUNTO_PACKAGE_ROOT=$X_PKG
+    export BUNTO_PACKAGE_ROOT
+  fi
+fi
+if [ -n "${X_COLS-}" ]; then
+  stty cols "$X_COLS" < /dev/tty
+fi
+if [ -n "${X_GONE-}" ]; then
+  mkdir gone
+  cd gone
+  rmdir "$PWD"
+fi
+unset X_PKG X_COLS X_GONE
+exec "$@"

@@ -1,0 +1,17 @@
+#!/bin/sh
+# Stands in front of bun in a parity case (see ../run.sh). A command that
+# installs, removes or updates packages is written to $PARITY_BUN_LOG, with
+# the directory it was asked in, and not run; bunto runs `bun install <name>`
+# and `bun remove <name>` (and `-d @types/<name>` after each) through Bun's
+# shell, which finds bun on PATH. Everything else is the real bun.
+case "${1-}" in
+  install | i | add | a | remove | rm | update | upgrade | link | unlink | pm | patch | patch-commit | x | create | init)
+    {
+      printf 'bun'
+      for arg in "$@"; do printf ' %s' "$arg"; done
+      printf '  [in %s]\n' "$(pwd -P)"
+    } >> "${PARITY_BUN_LOG:-/dev/null}"
+    exit 0
+    ;;
+esac
+exec "$PARITY_REAL_BUN" "$@"
