@@ -73,7 +73,10 @@ jobs:
       # After installing, on every platform, each line marked with who has to
       # answer it there. None runs a command's handler: plain `bunto` would
       # scan the current directory and install or remove packages there.
-      # `--no-dry` is a spelling the binary leaves to yargs.
+      # `--no-dry` is a spelling the binary leaves to yargs. A [native] line
+      # also needs the bun installed here to answer `bun --version` with a
+      # bun from 1.1.13 up to 2.0.0 (rs/src/runtime.rs bun_runs), and none of
+      # the variables of bun's or of the system's loader that hand back.
       smoke-extra: |
         [native] bunto --help => Remove all unused dependencies
         [native] bunto install --help => Install all missing dependencies
