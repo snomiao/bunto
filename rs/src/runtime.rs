@@ -134,6 +134,10 @@ impl Runtime {
         }
 
         let root = js_fallback::package_root().ok_or(HandBack)?;
+        // Without its JavaScript the package answers nothing: `run` says so.
+        if !root.join(crate::JS_ENTRY).is_file() {
+            return Err(HandBack);
+        }
         if !loadable(root.to_str().ok_or(HandBack)?) {
             return Err(HandBack);
         }

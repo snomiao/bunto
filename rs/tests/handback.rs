@@ -83,6 +83,19 @@ fn with_a_bun_on_path_it_answers_on_windows() {
     assert_eq!(run.status.code(), Some(0));
 }
 
+#[cfg(any(target_os = "linux", target_os = "macos"))]
+#[test]
+fn without_its_javascript_it_hands_back() {
+    use std::os::unix::fs::PermissionsExt;
+    let scratch = Scratch::new("nojs");
+    let bun = scratch.0.join("path/bun");
+    std::fs::write(&bun, "#!/bin/sh\necho not this bun\n").unwrap();
+    std::fs::set_permissions(&bun, std::fs::Permissions::from_mode(0o755)).unwrap();
+    std::fs::remove_file(scratch.0.join("pkg/bin/cli.js")).unwrap();
+    let run = scratch.run(&scratch.0.join("path"), &["--help"]);
+    assert!(String::from_utf8_lossy(&run.stderr).starts_with(TRACE_LINE));
+}
+
 #[test]
 fn bunto_no_native_hands_everything_back() {
     let scratch = Scratch::new("nonative");
