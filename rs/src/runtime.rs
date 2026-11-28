@@ -51,9 +51,11 @@ fn var(name: &str) -> Result<Option<String>, HandBack> {
 /// LD_DEBUG and LD_SHOW_AUXV write pages, LD_TRACE_LOADED_OBJECTS stops the
 /// program) and GLIBC_TUNABLES (it warns about one it does not know), and
 /// the Linux binary is static, so nothing reads them for it; macOS's dyld
-/// reads DYLD_*, its libmalloc Malloc* (MallocStackLogging writes two lines
-/// for every process) and its Objective-C runtime OBJC_* (OBJC_HELP writes a
-/// page), each for this binary as for bun, in its own name. glibc's
+/// reads DYLD_* (DYLD_PRINT_LIBRARIES lists this binary's libraries as well
+/// as bun's), its libmalloc Malloc* (MallocStackLogging writes two lines for
+/// bun, MallocScribble one on a terminal for every process, this one
+/// included, in its own name) and its Objective-C runtime OBJC_* (OBJC_HELP
+/// writes a page). glibc's
 /// MALLOC_* go back with them, but for two that profiles often set and that
 /// were seen to change nothing: MALLOC_ARENA_MAX and macOS's MallocNanoZone.
 fn changes_the_runtime(name: &str) -> bool {
