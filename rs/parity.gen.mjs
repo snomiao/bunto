@@ -323,7 +323,9 @@ const LOADER_LINES = [
   ["(ERROR|WARNING): ld\\.so: [^\\n]*\\n", ""],
   ["warning: debug option [^\\n]*\\n", ""],
   ["AT_[A-Z0-9_]+:[^\\n]*\\n", ""],
-  ["[\\w.-]+\\(\\d+\\) MallocStackLogging: [^\\n]*\\n", ""],
+  // libmalloc: `bun(123) MallocStackLogging: …`, on a terminal also
+  // `bun(123,0x1ed4cff80) malloc: enabling scribbling …`.
+  ["[\\w.-]+\\(\\d+(,0x[0-9a-f]+)?\\) (MallocStackLogging|malloc): [^\\n]*\\n", ""],
   ["dyld\\[\\d+\\]: [^\\n]*\\n", ""],
   ["objc\\[\\d+\\]: [^\\n]*\\n", ""],
 ];
@@ -345,8 +347,11 @@ V("LANG of 900 letters", ["--nope"], { env: { LANG: a(900) }, ...BACK(LOCALE_BAC
 V("LANG of 1100 letters", ["--help"], { env: { LANG: a(1100) }, ...BACK(LOCALE_BACK) });
 
 // The dynamic loader, which bun goes through and a static binary does not.
-V("LD_PRELOAD of a library that is not there, --help", ["--help"], { env: { LD_PRELOAD: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
-V("LD_PRELOAD of a library that is not there, an error", ["--nope"], { env: { LD_PRELOAD: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+// Git Bash's sh, which runs every case on Windows, loads LD_PRELOAD itself
+// and stops ("fatal error - error while loading shared libraries").
+const MSYS_PRELOAD = { skip: { win32: "Git Bash's sh, in front of both sides, loads LD_PRELOAD itself and stops, so neither side starts" } };
+V("LD_PRELOAD of a library that is not there, --help", ["--help"], { env: { LD_PRELOAD: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK), ...MSYS_PRELOAD });
+V("LD_PRELOAD of a library that is not there, an error", ["--nope"], { env: { LD_PRELOAD: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK), ...MSYS_PRELOAD });
 V("LD_AUDIT of a library that is not there, -v", ["-v"], { env: { LD_AUDIT: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
 V("LD_DEBUG=help", ["--help"], { env: { LD_DEBUG: "help" }, ...BACK(LOADER_BACK), skip: { linux: "ld.so writes its page and stops every program, the runner's sh first, so neither side starts" } });
 
@@ -391,7 +396,7 @@ VA("-v and 1000 words", ["-v", ...Array(1000).fill("bar")]);
 VA("i and 1000 --watch", ["i", ...Array(1000).fill("--watch")]);
 VA("i, 1000 --watch and an unknown", ["i", ...Array(1000).fill("--watch"), "--zz"]);
 VA("200 -h", Array(200).fill("-h"));
-VA("a word of 50000 letters", [a(50000, "z")]);
+VA("a word of 50000 letters", [a(50000, "z")], { skip: { win32: "a command line of more than 32767 characters, which Windows does not start" } });
 
 // Orders and spellings inside the vocabulary.
 for (const line of [
@@ -404,7 +409,10 @@ for (const line of [
 // The environment: what changes nothing, and what goes back.
 V("COLUMNS=40 through a pipe", ["--help"], { env: { COLUMNS: "40", LINES: "5" } });
 V("CLICOLOR_FORCE and TERM=dumb, an error", ["--nope"], { env: { CLICOLOR_FORCE: "1", TERM: "dumb" } });
-V("no HOME at all", ["--help"], { env: { HOME: null, USERPROFILE: null, XDG_CONFIG_HOME: null } });
+// On Windows Git Bash's sh, in front of both sides, sets HOME and USERPROFILE
+// again, to the real home of whoever runs the cases, which may hold a
+// .bunfig.toml (the binary then hands back, rightly).
+V("no HOME at all", ["--help"], { env: { HOME: null, USERPROFILE: null, XDG_CONFIG_HOME: null }, skip: { win32: "Git Bash's sh sets HOME and USERPROFILE again, to the real home of whoever runs the cases" } });
 V("a HOME that is relative", ["--help"], { env: { HOME: "rel" } });
 V("a TMPDIR that does not exist", ["--nope"], { env: { TMPDIR: "<ROOT>/no-such-tmp" }, skip: { win32: "bun hangs on a TEMP it cannot use" } });
 V("LANG=C with LC_ALL empty", ["--help"], { env: { LANG: "C", LC_ALL: "" } });
