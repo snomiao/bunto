@@ -40,8 +40,9 @@ if (!named) {
   console.error("usage: args.mjs <the bunto binary> [--count <n>] [--jobs <n>]");
   process.exit(2);
 }
-// Every run starts in a directory of its own.
-const binary = path.resolve(named);
+// Every run starts in a directory of its own. On Windows the binary may be
+// named without its .exe ($RUSTIFY_BIN_DIR/bunto).
+const binary = [path.resolve(named), `${path.resolve(named)}.exe`].find((file) => fs.existsSync(file)) ?? path.resolve(named);
 const count = option("--count", 1500);
 const jobs = option("--jobs", Math.min(4, os.cpus().length));
 const repo = process.cwd();
