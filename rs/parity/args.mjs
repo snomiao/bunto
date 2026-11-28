@@ -99,16 +99,37 @@ function run(program, args, extra) {
   });
 }
 
+// A Windows machine under load cannot always start a program: it ends with
+// an NTSTATUS code (STATUS_DLL_INIT_FAILED, 0xC0000142) before it has run.
+// Two such failures compare the same, so the line is run again instead.
+const NOT_STARTED = (result) => result.code !== null && result.code >= 0xc0000000;
+async function runAgain(program, args, extra) {
+  for (let tries = 0; ; tries++) {
+    const result = await run(program, args, extra);
+    if (!NOT_STARTED(result) || tries === 8) return result;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+}
+
+// What bin/cli.js ends in, for these lines: help or version (exit 0, on
+// stdout only), or a usage error or a handler's (exit 1, a newline on
+// stdout, the rest on stderr). Anything else is a run that went wrong.
+const usual = (r) => (r.code === 0 && r.out !== "" && r.err === "") || (r.code === 1 && r.out === "\n" && r.err !== "");
+
 const failures = [];
 const tally = { native: 0, handler: 0, outside: 0 };
 async function check(line) {
-  const ts = await run("bun", [entry, ...line], {});
-  const rs = await run(binary, line, { BUNTO_PACKAGE_ROOT: standIn });
+  const ts = await runAgain("bun", [entry, ...line], {});
+  const rs = await runAgain(binary, line, { BUNTO_PACKAGE_ROOT: standIn });
   const handler = ts.err.includes("ReferenceError: getDeps is not defined");
   const back = rs.out.includes(MARKER);
   const shown = JSON.stringify(line);
-  if (ts.code === null || rs.code === null) {
-    failures.push(`${shown}: could not be run: ${ts.code === null ? ts.err : rs.err}`);
+  if (ts.code === null || rs.code === null || NOT_STARTED(ts) || NOT_STARTED(rs)) {
+    failures.push(`${shown}: could not be run: exit ${ts.code} and ${rs.code} ${ts.code === null ? ts.err : rs.err}`);
+    return;
+  }
+  if (!usual(ts)) {
+    failures.push(`${shown}: bin/cli.js ended unlike any of its answers: exit ${ts.code} ${JSON.stringify(ts.out.slice(-200))} ${JSON.stringify(ts.err.slice(-200))}`);
     return;
   }
   if (back) {

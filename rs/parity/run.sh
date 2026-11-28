@@ -57,8 +57,24 @@ unset X_PKG X_COLS X_GONE
 # TypeScript's bun is started directly as well, so that both sides start
 # the same programs (Git Bash's sh, for one, warns about a LC_ALL it does not
 # know each time it starts).
-if [ "$1" = bun ] && command -v cygpath > /dev/null 2>&1; then
-  shift
-  set -- "$PARITY_REAL_BUN" "$@"
+if command -v cygpath > /dev/null 2>&1; then
+  if [ "$1" = bun ]; then
+    shift
+    set -- "$PARITY_REAL_BUN" "$@"
+  fi
+  # A Windows machine under load cannot always start a program: it ends
+  # with STATUS_DLL_INIT_FAILED before it has run, which sh reports as 127.
+  # Two such failures in one case compare the same, so the program is
+  # started again instead (neither side ends with 127 by itself here).
+  tries=0
+  while :; do
+    code=0
+    "$@" || code=$?
+    if [ "$code" != 127 ] || [ "$tries" -ge 8 ]; then
+      exit "$code"
+    fi
+    tries=$((tries + 1))
+    sleep 1
+  done
 fi
 exec "$@"
