@@ -10,9 +10,9 @@
 # $PARITY_BUN_LOG with the directory it was asked in, and runs none of them;
 # everything else goes to the real bun. So a case can show what bunto would
 # have installed or removed, and no case installs anything. (On Windows a
-# program that is not a shell finds bun as bun.exe, past this stand-in; the
-# cases that could reach an install also point the registry at a closed
-# port, see rs/parity.gen.mjs.)
+# program that is not a shell finds bun as bun.exe, past this stand-in, see
+# the end; the cases that could reach an install also point the registry at
+# a closed port, see rs/parity.gen.mjs.)
 #
 # These variables of a case steer it, and are not passed on:
 #
@@ -52,4 +52,13 @@ if [ -n "${X_GONE-}" ]; then
   rmdir "$PWD"
 fi
 unset X_PKG X_COLS X_GONE
+# On Windows a program that is not a shell (the binary handing back) finds
+# bun as bun.exe, past the stand-in, which is a shell script: there the
+# TypeScript's bun is started directly as well, so that both sides start
+# the same programs (Git Bash's sh, for one, warns about a LC_ALL it does not
+# know each time it starts).
+if [ "$1" = bun ] && command -v cygpath > /dev/null 2>&1; then
+  shift
+  set -- "$PARITY_REAL_BUN" "$@"
+fi
 exec "$@"
