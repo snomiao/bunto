@@ -1,0 +1,86 @@
+# Builds the Rust `bunto` binary for every platform, proves on Linux, macOS
+# and Windows that it behaves like bin/cli.js, packs it together with the
+# JavaScript the package ships (bin/cli.js, which `bun run build` bundles
+# from cli.ts), and checks on Linux, macOS and Windows (x64 and arm64) that
+# `bun i -g` / `npm i -g` gives a working `bunto` command.
+#
+# The binary answers what yargs answers without running a command (the
+# help, the version, an unknown argument) and hands everything else back to
+# bin/cli.js, so nothing changes for users.
+#
+# It does not publish. Releases still go through semantic-release.yml.
+#
+# The pipeline lives in https://github.com/snomiao/rustify.
+
+name: rust-npm-release
+
+on:
+  pull_request:
+    # The TypeScript is listed too: it is bundled into what this packs, and
+    # the parity test compares it with the binary, so a change on either
+    # side has to rerun it.
+    paths:
+      - "rs/**"
+      - "**.ts"
+      - "**.tsx"
+      - "**.mts"
+      - "**.cts"
+      - "**.js"
+      - "**.jsx"
+      - "**.mjs"
+      - "**.cjs"
+      - "notNeededPackages.json"
+      - "bun.lock"
+      - "package.json"
+      - ".gitattributes"
+      - ".github/workflows/rust-npm-release.yml"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to build, without a leading v (default: the version in rs/Cargo.toml)"
+        required: false
+        type: string
+
+jobs:
+  build:
+    uses: snomiao/rustify/.github/workflows/rust-npm-build.yml@releases/v1
+    with:
+      manifest: rs/Cargo.toml
+      bins: bunto
+      version: ${{ inputs.version }}
+      # bin/cli.js is a build product (bin/ is not in git). --ignore-scripts
+      # skips `prepare` (husky), which the build does not need.
+      js-build: bun install --frozen-lockfile --ignore-scripts && bun run build
+      # Proof that the binary behaves like bin/cli.js, on Linux x64, macOS
+      # arm64 and Windows x64, each with the binary just built for it:
+      # rs/parity/proof.sh checks rs/parity.json against its generator, then
+      # runs the parity cases (TypeScript against the binary, which hands
+      # back to this checkout, then the binary against a stand-in package:
+      # exactly the cases marked `handback` may reach the JavaScript), on
+      # Linux and macOS the whole file again on a terminal, 1500 more command
+      # lines (rs/parity/args.mjs), and cargo test. bin/cli.js is what the
+      # binary hands back to, so it is built first.
+      parity-platforms: '["linux-x64", "darwin-arm64", "win32-x64"]'
+      # On Windows every program starts slowly.
+      parity-timeout-minutes: 60
+      parity: >-
+        bun install --frozen-lockfile --ignore-scripts
+        && bun run build
+        && sh rs/parity/proof.sh "$RUSTIFY_PARITY" "$RUSTIFY_BIN_DIR/bunto"
+      # The version the package is stamped with, as the binary reads it from
+      # package.json.
+      smoke: bunto --version
+      # After installing, on every platform, each line marked with who has to
+      # answer it there. None runs a command's handler: plain `bunto` would
+      # scan the current directory and install or remove packages there.
+      # `--no-dry` is a spelling the binary leaves to yargs. A [native] line
+      # also needs the bun installed here to answer `bun --version` with a
+      # bun from 1.1.13 up to 2.0.0 (rs/src/runtime.rs bun_runs), and none of
+      # the variables of bun's or of the system's loader that hand back.
+      smoke-extra: |
+        [native] bunto --help => Remove all unused dependencies
+        [native] bunto install --help => Install all missing dependencies
+        [native] bunto r help => Remove all unused dependencies
+        [1] [native] bunto --nope => Unknown argument: nope
+        [native] bunto -v => .
+        [handback] bunto --no-dry --help => Install all missing dependencies

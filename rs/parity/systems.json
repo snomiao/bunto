@@ -1,0 +1,4 @@
+{
+ "native": ["linux", "darwin", "win32"],
+ "why": "The systems (node's process.platform) where the parity cases have shown the binary's answers to be bun's, and where it answers natively: rs/src/runtime.rs platform_is_proven says the same. rs/parity.gen.mjs marks every case handed back on the others, and rs/parity/args.mjs expects every line handed back there."
+}

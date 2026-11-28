@@ -1,0 +1,6 @@
+# The npm package ships bin/cli.js and the root's .ts and .json files and, from
+# the pipeline, the built binaries. The crate's sources and its parity cases
+# stay out of the tarball. package.json's `files` patterns ("*.ts", "*.json",
+# "bin") match only at the root today; this file keeps rs/ out should a pattern
+# ever reach further.
+*
