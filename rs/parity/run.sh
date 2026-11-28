@@ -23,9 +23,25 @@
 #                  entry first, so that reaching the JavaScript still shows.
 #   X_COLS=<n>     make the terminal <n> columns wide (a case with "tty").
 #   X_GONE=1       start the command in a directory that has been removed.
+#   X_PATH=<dir>   put <dir> first on PATH, behind the stand-in, so that a
+#                  `bun` there is the one both sides start (a case's setup
+#                  wrote it, and found the real bun on the PATH it has).
+#   X_SET=<name>=<value>
+#                  set this variable only for the command, not for the
+#                  programs in front of it: on macOS the runner's sh and env
+#                  are protected programs, which take every DYLD_* variable
+#                  out of what they pass on, so a case's DYLD_* would never
+#                  reach either side.
+#   X_SIMDUTF=1    set SIMDUTF_FORCE_IMPLEMENTATION to the implementation of
+#                  this machine's processor (westmere on x64, arm64 on ARM),
+#                  with which bun runs; with any other value bun 1.4.0 on x64
+#                  hangs before any program, a stand-in's included.
 set -eu
 
 here=$(cd "$(dirname "$0")" && pwd)
+if [ -n "${X_PATH-}" ]; then
+  PATH="$X_PATH:$PATH"
+fi
 PARITY_REAL_BUN=$(command -v bun)
 PATH="$here/shim:$PATH"
 export PARITY_REAL_BUN PATH
@@ -51,7 +67,17 @@ if [ -n "${X_GONE-}" ]; then
   cd gone
   rmdir "$PWD"
 fi
-unset X_PKG X_COLS X_GONE
+if [ -n "${X_SIMDUTF-}" ]; then
+  case "$(uname -m)" in
+    x86_64 | amd64) SIMDUTF_FORCE_IMPLEMENTATION=westmere ;;
+    *) SIMDUTF_FORCE_IMPLEMENTATION=arm64 ;;
+  esac
+  export SIMDUTF_FORCE_IMPLEMENTATION
+fi
+if [ -n "${X_SET-}" ]; then
+  export "${X_SET%%=*}=${X_SET#*=}"
+fi
+unset X_PKG X_COLS X_GONE X_PATH X_SET X_SIMDUTF
 # On Windows a program that is not a shell (the binary handing back) finds
 # bun as bun.exe, past the stand-in, which is a shell script: there the
 # TypeScript's bun is started directly as well, so that both sides start

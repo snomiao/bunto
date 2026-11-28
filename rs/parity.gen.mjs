@@ -291,6 +291,242 @@ add("work: bunto i in a project with node_modules", ["i"], {
 add("work: a usage error on a project changes nothing", ["i", "--nope"], { files: APP, after: AFTER });
 add("work: the help on a project changes nothing", ["--help"], { files: APP, after: AFTER });
 
+// ═══════════════════════════ verify ═══════════════════════════
+// An independent verifier's cases (2026-11-28), aimed at what the cases
+// above missed; written by /tmp/vb-tools/gen-extra.mjs then, and kept here
+// as they were, with the marks the repair calls for. Four kinds differed
+// from bin/cli.js, and go back now (rs/src/runtime.rs):
+// - a locale longer than a path may be: y18n opens `<locale>.json`, gets
+//   ENAMETOOLONG instead of ENOENT, and rethrows it, so bin/cli.js ends
+//   with bun's report of the error (Linux from about 4080 letters, macOS
+//   from about 1000);
+// - SIMDUTF_FORCE_IMPLEMENTATION, which bun reads as it starts;
+// - the variables of the system's loader and allocator: glibc's ld.so
+//   (LD_*) writes for bun, and the static Linux binary has none; macOS's
+//   libmalloc (MallocStackLogging) writes for every process;
+// - a `bun` on PATH that does not run (a version manager's shim).
+// Where the programs around the command write lines of their own (ld.so and
+// libmalloc write for each process, the runner's and run.sh's included, and
+// each side starts other ones), those lines are taken out before comparing
+// (LOADER_LINES): the cases compare what the command prints, and the
+// --handback check shows who answered.
+
+const V = (name, args, o = {}) => add(`verify: ${name}`, args, o);
+const a = (n, ch = "a") => ch.repeat(n);
+const LOCALE_BACK = "a locale y18n cannot open as a file that is not there (rs/src/runtime.rs ordinary_locale_file): past what a path may be, it rethrows ENAMETOOLONG";
+const LOADER_BACK = "a variable of the system's loader or allocator, which bun goes through and this binary does not, or not alike (rs/src/runtime.rs changes_the_runtime)";
+const SIMDUTF_BACK = "simdutf's variable, which bun reads as it starts (rs/src/runtime.rs changes_the_runtime)";
+const BUN_BACK = "the bun on PATH does not run, or is not of the versions proven (rs/src/runtime.rs bun_runs)";
+// The lines ld.so, dyld, libmalloc and the Objective-C runtime write for a
+// process; [^\n]* takes a terminal's \r with it.
+const LOADER_LINES = [
+  ["(ERROR|WARNING): ld\\.so: [^\\n]*\\n", ""],
+  ["warning: debug option [^\\n]*\\n", ""],
+  ["AT_[A-Z0-9_]+:[^\\n]*\\n", ""],
+  ["[\\w.-]+\\(\\d+\\) MallocStackLogging: [^\\n]*\\n", ""],
+  ["dyld\\[\\d+\\]: [^\\n]*\\n", ""],
+  ["objc\\[\\d+\\]: [^\\n]*\\n", ""],
+];
+
+// A locale longer than a path may be.
+V("LANG of 5000 letters, --help", ["--help"], { env: { LANG: a(5000) }, ...BACK(LOCALE_BACK) });
+V("LC_ALL of 5000 letters, an unknown argument", ["--nope"], { env: { LC_ALL: a(5000) }, ...BACK(LOCALE_BACK) });
+V("LC_MESSAGES of 5000 letters, i --help", ["i", "--help"], { env: { LC_MESSAGES: a(5000) }, ...BACK(LOCALE_BACK) });
+V("LANGUAGE of 5000 letters, r help", ["r", "help"], { env: { LANGUAGE: a(5000) }, ...BACK(LOCALE_BACK) });
+V("LANG of 5000 letters with .UTF-8", ["-h"], { env: { LANG: a(5000) + ".UTF-8" }, ...BACK(LOCALE_BACK) });
+V("LANG de_ and 5000 letters (language fallback)", ["--help"], { env: { LANG: "de_" + a(5000) }, ...BACK(LOCALE_BACK) });
+V("LANG of 2100 e-acute (4200 bytes)", ["--help"], { env: { LANG: a(2100, "é") }, ...BACK(LOCALE_BACK) });
+// bin/cli.js looks no text up for the version, but the binary asks before
+// it knows what it will print.
+V("LANG of 5000 letters, the version (no text looked up)", ["-v"], { env: { LANG: a(5000) }, ...BACK(LOCALE_BACK) });
+V("LANG of 5000 letters, the handler", ["i"], { env: { LANG: a(5000) }, ...BACK(HANDLER) });
+V("LANG of 300 letters (one name too long, the directory missing)", ["--help"], { env: { LANG: a(300) }, ...BACK(LOCALE_BACK) });
+V("LANG of 900 letters", ["--nope"], { env: { LANG: a(900) }, ...BACK(LOCALE_BACK) });
+V("LANG of 1100 letters", ["--help"], { env: { LANG: a(1100) }, ...BACK(LOCALE_BACK) });
+
+// The dynamic loader, which bun goes through and a static binary does not.
+V("LD_PRELOAD of a library that is not there, --help", ["--help"], { env: { LD_PRELOAD: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+V("LD_PRELOAD of a library that is not there, an error", ["--nope"], { env: { LD_PRELOAD: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+V("LD_AUDIT of a library that is not there, -v", ["-v"], { env: { LD_AUDIT: "/nonexistent-verify.so" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+V("LD_DEBUG=help", ["--help"], { env: { LD_DEBUG: "help" }, ...BACK(LOADER_BACK), skip: { linux: "ld.so writes its page and stops every program, the runner's sh first, so neither side starts" } });
+
+// simdutf's variable: with these values bun 1.4.0 on x64 hangs and 1.4.5
+// stops with exit 134, before any program, the --handback check's stand-in
+// included, so no case can show there who answered. The Macs the cases run
+// on are arm64, where bun runs with them. The cases `gate: SIMDUTF_…` set
+// one with which bun runs everywhere.
+const SIMDUTF_X64 = "on x64 bun hangs (1.4.0) or stops (1.4.5) with this value before any program, the stand-in's included";
+V("SIMDUTF_FORCE_IMPLEMENTATION=1, --help", ["--help"], { env: { SIMDUTF_FORCE_IMPLEMENTATION: "1" }, timeout: 15, ...BACK(SIMDUTF_BACK), skip: { linux: SIMDUTF_X64, win32: SIMDUTF_X64 } });
+V("SIMDUTF_FORCE_IMPLEMENTATION=fallback, an error", ["--nope"], { env: { SIMDUTF_FORCE_IMPLEMENTATION: "fallback" }, timeout: 15, ...BACK(SIMDUTF_BACK), skip: { linux: SIMDUTF_X64, win32: SIMDUTF_X64 } });
+
+// macOS: libmalloc's variables make bun (and sh, on both sides) write to stderr.
+V("MallocStackLogging (macOS), --help", ["--help"], { env: { MallocStackLogging: "1" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+V("MallocStackLogging (macOS), -v", ["-v"], { env: { MallocStackLogging: "1" }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+
+// A bun on PATH that does not run bin/cli.js (a version manager's shim).
+// The binary hands these back now (rs/src/runtime.rs bun_runs), to a bun
+// that cannot run any JavaScript, the --handback check's stand-in included:
+// so that check sees no JavaScript reached, and counts them among the
+// answered. What shows the hand-back is the comparison: the shim's message
+// and its exit code 126 on both sides, which only starting the shim gives.
+// The cases `gate: a bun that says … to --version` show it to the
+// --handback check as well, with a bun that fails only when asked that.
+const FAKE_BUN = [
+  "mkdir -p <ROOT>/fakebin",
+  "printf '#!/bin/sh\\necho \"No version is set for command bun\" >&2\\nexit 126\\n' > <ROOT>/fakebin/bun",
+  "chmod +x <ROOT>/fakebin/bun",
+];
+const NOWIN = { skip: { win32: "a shell script named bun is not bun.exe" } };
+V("a bun shim that fails, --help", ["--help"], { setup: FAKE_BUN, env: { PATH: "<ROOT>/fakebin:/usr/bin:/bin" }, ...NOWIN });
+V("a bun shim that fails, -v", ["-v"], { setup: FAKE_BUN, env: { PATH: "<ROOT>/fakebin:/usr/bin:/bin" }, ...NOWIN });
+V("a bun shim that fails, an error", ["foo"], { setup: FAKE_BUN, env: { PATH: "<ROOT>/fakebin:/usr/bin:/bin" }, ...NOWIN });
+
+// Huge and many arguments inside the vocabulary.
+const VA = (name, args, o = {}) => V(name, args, { ...argsMark(args), ...o });
+VA("an unknown option of 20000 letters", ["--" + a(20000, "q")]);
+VA("2000 unknown words", Array(2000).fill("foo"));
+VA("500 different unknown options", Array.from({ length: 500 }, (_, k) => `--o${k}`));
+VA("help after 300 words", [...Array(300).fill("foo"), "help"]);
+VA("-v and 1000 words", ["-v", ...Array(1000).fill("bar")]);
+VA("i and 1000 --watch", ["i", ...Array(1000).fill("--watch")]);
+VA("i, 1000 --watch and an unknown", ["i", ...Array(1000).fill("--watch"), "--zz"]);
+VA("200 -h", Array(200).fill("-h"));
+VA("a word of 50000 letters", [a(50000, "z")]);
+
+// Orders and spellings inside the vocabulary.
+for (const line of [
+  ["help", "help", "help"], ["--dry", "--dry", "help"], ["-w", "-w", "help"], ["auto", "-r", "help"], ["remove", "-i", "help"], ["install", "-r", "x"],
+  ["--version", "i", "--help"], ["i", "-v", "-h"], ["--nope", "help", "help"], ["-x", "-y", "help"], ["--remove", "r", "i"], ["--install", "--remove", "auto"],
+  ["auto", "auto", "help"], ["r", "r"], ["i", "install"], ["foo", "--help", "i"], ["version"], ["version", "-v"], ["--watch", "--watch", "foo"],
+  ["completion"], ["h"], ["v"], ["auto", "help", "foo"], ["-q", "i", "help"], ["i", "--dry", "--dry", "-w", "-w"],
+]) VA(`args ${line.join(" ")}`, line);
+
+// The environment: what changes nothing, and what goes back.
+V("COLUMNS=40 through a pipe", ["--help"], { env: { COLUMNS: "40", LINES: "5" } });
+V("CLICOLOR_FORCE and TERM=dumb, an error", ["--nope"], { env: { CLICOLOR_FORCE: "1", TERM: "dumb" } });
+V("no HOME at all", ["--help"], { env: { HOME: null, USERPROFILE: null, XDG_CONFIG_HOME: null } });
+V("a HOME that is relative", ["--help"], { env: { HOME: "rel" } });
+V("a TMPDIR that does not exist", ["--nope"], { env: { TMPDIR: "<ROOT>/no-such-tmp" }, skip: { win32: "bun hangs on a TEMP it cannot use" } });
+V("LANG=C with LC_ALL empty", ["--help"], { env: { LANG: "C", LC_ALL: "" } });
+V("a locale of two dots", ["--help"], { env: { LC_ALL: ".." } });
+V("a locale named constructor", ["--nope"], { env: { LANG: "constructor" } });
+V("a locale named __proto__", ["--help"], { env: { LANG: "__proto__" } });
+V("lower-case node_options", ["--help"], { env: { node_options: "--x" }, ...BACK("names are compared without case (runtime.rs changes_the_runtime)") });
+V("JSC_ variables", ["--nope"], { env: { JSC_useJIT: "0", JSC_dumpOptions: "1" } });
+
+// Files in the current directory.
+V(".env that is a dangling link", ["--help"], { setup: ["ln -s <ROOT>/nowhere .env"], ...BACK("bun loads it") });
+V(".ENV in capitals", ["--help"], { files: { ".ENV": "YARGS_DISABLE_WRAP=1\n" }, handback: { darwin: "a case-insensitive file system: .env is there", win32: "a case-insensitive file system: .env is there" } });
+V("bunfig.toml that is a directory", ["-v"], { setup: ["mkdir bunfig.toml"], ...BACK("bun reads bunfig.toml") });
+V(".bunfig.toml (hidden) in the current directory", ["--help"], { files: { ".bunfig.toml": 'preload = ["./pre.js"]\n', "pre.js": 'console.log("preloaded");\n' } });
+V("a package.json with a yargs key", ["--help"], { files: { "package.json": '{"yargs":{"sort-commands":true,"unknown-options-as-args":true}}\n' } });
+V("a package.json with a yargs key, an error", ["--nope"], { files: { "package.json": '{"yargs":{"unknown-options-as-args":true,"halt-at-non-option":true}}\n' } });
+V("a node_modules/yargs that is broken", ["--help"], { files: { "node_modules/yargs/package.json": '{"name":"yargs","main":"x.js"}\n', "node_modules/yargs/x.js": "throw new Error('local yargs')\n" } });
+V("a tsconfig.json that extends nothing", ["--nope"], { files: { "tsconfig.json": '{"extends":"./nope.json"}\n' } });
+V("a bun.lockb that is garbage", ["--help"], { files: { "bun.lockb": "garbage\n", "bun.lock": "{ garbage\n" } });
+V(".env.local.example and .env.sample", ["--help"], { files: { ".env.local.example": "YARGS_DISABLE_WRAP=1\n", ".env.sample": "YARGS_DISABLE_WRAP=1\n" } });
+V("a CRLF .env", ["--help"], { files: { ".env": "YARGS_DISABLE_WRAP=1\r\n" }, ...BACK("bun loads it") });
+V("a .env that is not UTF-8", ["--nope"], { setup: ["printf 'A=\\377\\376\\n' > .env"], ...BACK("bun loads it") });
+
+// A copy of the package in odd places.
+const COPY_AT = (dir) => [`mkdir -p "${dir}/bin"`, `cp <REPO>/package.json "${dir}/package.json"`, `cp <REPO>/bin/cli.js "${dir}/bin/cli.js"`];
+V("the package in a node_modules of a project with a yargs key", ["--help"], {
+  setup: [...COPY_AT("<ROOT>/proj/node_modules/bunto"), `printf '{"yargs":{"sort-commands":true}}\\n' > <ROOT>/proj/package.json`],
+  env: { X_PKG: "<ROOT>/proj/node_modules/bunto" },
+});
+V("the package under a directory with spaces and #", ["--nope"], { setup: COPY_AT("<ROOT>/a b#c/pkg"), env: { X_PKG: "<ROOT>/a b#c/pkg" }, skip: { win32: "a # in a path" } });
+V("the package under a directory with non-ASCII", ["--help"], { setup: COPY_AT("<ROOT>/日本/pkg"), env: { X_PKG: "<ROOT>/日本/pkg" } });
+V("locales beside the package is a file", ["--help"], { setup: [...COPY_AT("<ROOT>/pkg"), "printf 'x' > <ROOT>/locales"], env: { X_PKG: "<ROOT>/pkg" }, ...BACK("a locales beside the package") });
+
+// stdin.
+V("a large stdin is not read", ["--nope"], { stdin: "y\n".repeat(50000) });
+
+// Terminals (Linux and macOS).
+V("tty: the help at 81 columns", ["--help"], { tty: "stdout", env: { X_COLS: "81" } });
+V("tty: the help at 1000 columns", ["r", "help"], { tty: "stdout", env: { X_COLS: "1000" } });
+V("tty: the version on a terminal, TERM unset", ["-v"], { tty: "stdout", env: { TERM: null } });
+V("tty: the help, COLUMNS=40 on an 80-column terminal", ["--help"], { tty: "stdout", env: { COLUMNS: "40" } });
+V("tty: stdin only is a terminal, an error", ["--nope"], { tty: "stdin" });
+V("tty: stdin only is a terminal, the help", ["--help"], { tty: "stdin" });
+V("tty: a long LANG on a terminal", ["--help"], { tty: "stdout", env: { LANG: a(5000) }, ...BACK(LOCALE_BACK) });
+
+// ── What pins each repair ───────────────────────────────────────────────
+
+// The locale: a plain name in a short path is still English; anything else
+// goes back.
+for (const [name, value] of [["LANG", "sr_RS@latin"], ["LANG", "de-DE"], ["LC_ALL", a(80)]]) {
+  add(`gate: ${name}=${value.length > 20 ? `${value.length} letters` : value} is still English`, ["--help"], { env: { [name]: value } });
+}
+for (const [what, value] of [["a space", "de DE"], ["a star", "a*b"], ["a quotation mark", 'a"b'], ["a letter that is not ASCII", "é"], ["a tab", "a\tb"]]) {
+  add(`gate: a locale with ${what} goes back`, ["--help"], { env: { LANG: value }, ...BACK(LOCALE_BACK) });
+}
+add("gate: a locale of 240 letters goes back", ["--nope"], { env: { LC_MESSAGES: a(240) }, ...BACK(LOCALE_BACK) });
+
+// simdutf: with the implementation of this machine (run.sh X_SIMDUTF) bun
+// runs, and the binary leaves it to bun all the same; so with any other
+// variable of simdutf's.
+add("gate: SIMDUTF_FORCE_IMPLEMENTATION of this machine, the help", ["--help"], { env: { X_SIMDUTF: "1" }, ...BACK(SIMDUTF_BACK) });
+add("gate: SIMDUTF_FORCE_IMPLEMENTATION of this machine, an error", ["--nope"], { env: { X_SIMDUTF: "1" }, ...BACK(SIMDUTF_BACK) });
+add("gate: another variable of simdutf's", ["-v"], { env: { SIMDUTF_NO_SUCH_THING: "1" }, ...BACK(SIMDUTF_BACK) });
+
+// The loaders and allocators, on every system (each means nothing to the
+// other systems' loaders, and goes back there as well).
+for (const [name, value, args] of [
+  ["LD_DEBUG", "nosuchoption", ["--help"]],
+  ["LD_LIBRARY_PATH", "<ROOT>/no-such-lib", ["-v"]],
+  ["LD_BIND_NOW", "1", ["i", "--help"]],
+  ["GLIBC_TUNABLES", "nosuchtunable", ["--help"]],
+  ["MALLOC_PERTURB_", "165", ["--nope"]],
+  ["MallocScribble", "1", ["--help"]],
+  ["OBJC_HELP", "1", ["--help"]],
+  ["OBJC_PRINT_OPTIONS", "1", ["-v"]],
+]) {
+  add(`gate: ${name}=${value}`, args, { env: { [name]: value }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+}
+// Two allocator settings that profiles and containers often have, seen to
+// change nothing for bun, are let through.
+add("gate: MALLOC_ARENA_MAX changes nothing", ["--nope"], { env: { MALLOC_ARENA_MAX: "2" } });
+add("gate: MallocNanoZone changes nothing", ["--help"], { env: { MallocNanoZone: "0" } });
+// These come through run.sh (X_SET), for the command alone: on macOS the
+// runner's sh and env take dyld's variables out of what they pass on, and
+// LD_SHOW_AUXV makes every program write a page on stdout, which run.sh
+// itself cannot take (it reads what dirname writes).
+for (const [name, value, args] of [["DYLD_PRINT_LIBRARIES", "1", ["--help"]], ["DYLD_PRINT_APIS", "1", ["--nope"]], ["LD_SHOW_AUXV", "1", ["--nope"]]]) {
+  add(`gate: ${name} for the command`, args, { env: { X_SET: `${name}=${value}` }, normalize: LOADER_LINES, ...BACK(LOADER_BACK) });
+}
+// On macOS dyld stops the binary, before its first line, when a library it
+// is to insert is not there: no binary can hand that back (bin/cli.js, which
+// /usr/bin/env starts, never sees the variable). Elsewhere it goes back.
+add("gate: DYLD_INSERT_LIBRARIES for the command", ["-v"], {
+  env: { X_SET: "DYLD_INSERT_LIBRARIES=<ROOT>/no-such.dylib" },
+  normalize: LOADER_LINES,
+  ...BACK(LOADER_BACK),
+  skip: { darwin: "dyld stops the binary before its first line, so it cannot hand back (see the ledger)" },
+});
+
+// The bun on PATH is asked its version first (rs/src/runtime.rs bun_runs):
+// one that answers as the versions proven do is taken, any other goes back.
+// The `bun` here goes first on PATH (run.sh X_PATH) and runs the real one,
+// which the setup line finds, for everything but --version.
+const WRAPPED_BUN = (version) => [
+  "mkdir -p <ROOT>/fakebin",
+  `printf '#!/bin/sh\\ncase "$1" in --version) ${version} ;; esac\\nexec "%s" "$@"\\n' "$(command -v bun)" > <ROOT>/fakebin/bun`,
+  "chmod +x <ROOT>/fakebin/bun",
+];
+for (const [what, version, mark] of [
+  ["1.4.0", "echo 1.4.0; exit 0", {}],
+  ["1.1.13", "echo 1.1.13; exit 0", {}],
+  ["1.1.12", "echo 1.1.12; exit 0", BACK(BUN_BACK)],
+  ["1.0.36", "echo 1.0.36; exit 0", BACK(BUN_BACK)],
+  ["2.0.0", "echo 2.0.0; exit 0", BACK(BUN_BACK)],
+  ["a version and a warning", "echo 1.4.0; echo warning >&2; exit 0", BACK(BUN_BACK)],
+  ["nothing", "exit 0", BACK(BUN_BACK)],
+  ["a failure", "echo 1.4.0; exit 1", BACK(BUN_BACK)],
+  ["a version manager's failure", 'echo "No version is set for command bun" >&2; exit 126', BACK(BUN_BACK)],
+]) {
+  add(`gate: a bun that says ${what} to --version`, ["--help"], { setup: WRAPPED_BUN(version), env: { X_PATH: "<ROOT>/fakebin" }, ...NOWIN, ...mark });
+}
+
 // ═══════════════════════════ systems ═══════════════════════════
 // The same cases run on Linux, macOS and Windows (rs/parity/proof.sh).
 

@@ -9,6 +9,10 @@
 # what the binary hands back to). The CI workflow's parity job runs this on
 # each platform of `parity-platforms`, against the binary it has just built
 # for that platform ($RUSTIFY_PLATFORM names it; without it, `uname` does).
+# On Linux that is the static musl build (`cargo build --release --target
+# x86_64-unknown-linux-musl`), which is what the pipeline ships; a glibc
+# build passes as well, because the cases that set a variable of the
+# loader's take the lines ld.so writes out before comparing.
 #
 # First rs/parity.json is checked to be what rs/parity.gen.mjs writes. Then,
 # each into a log of its own:
