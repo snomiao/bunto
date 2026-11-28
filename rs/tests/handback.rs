@@ -72,7 +72,7 @@ fn with_a_bun_on_path_it_answers() {
     assert!(String::from_utf8_lossy(&run.stderr).starts_with(TRACE_LINE));
 }
 
-#[cfg(any())]
+#[cfg(windows)]
 #[test]
 fn with_a_bun_on_path_it_answers_on_windows() {
     let scratch = Scratch::new("bun");

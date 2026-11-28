@@ -80,6 +80,13 @@ fn bun_on_path() -> bool {
     })
 }
 
+/// On Windows bun hangs, instead of failing, when TEMP names a directory it
+/// cannot use (seen with bun 1.4.2); there the JavaScript is left to hang as
+/// it always did. Elsewhere bun does not look at them.
+fn temp_is_usable(var: impl Fn(&str) -> Option<std::ffi::OsString>) -> bool {
+    !cfg!(windows) || ["TEMP", "TMP"].iter().all(|name| var(name).is_some_and(|dir| Path::new(&dir).is_dir()))
+}
+
 #[cfg(unix)]
 fn executable(path: &Path) -> bool {
     use std::os::unix::fs::PermissionsExt;
@@ -94,7 +101,7 @@ fn executable(path: &Path) -> bool {
 /// The systems where the parity cases have shown the answers to be bun's:
 /// everywhere else every invocation goes back.
 fn platform_is_proven() -> bool {
-    cfg!(any(target_os = "linux", target_os = "macos"))
+    cfg!(any(target_os = "linux", target_os = "macos", windows))
 }
 
 impl Runtime {
@@ -109,7 +116,7 @@ impl Runtime {
             }
         }
         // Without bun the JavaScript cannot start at all: `run` says so.
-        if !bun_on_path() {
+        if !bun_on_path() || !temp_is_usable(|name| std::env::var_os(name)) {
             return Err(HandBack);
         }
         // bun fails when the current directory has gone.
@@ -243,6 +250,16 @@ mod tests {
         for name in ["BUN_INSTALL", "BUNTO_PACKAGE_ROOT", "LANG", "NO_COLOR", "PATH", "NODE"] {
             assert!(!changes_the_runtime(name), "{name}");
         }
+    }
+
+    #[test]
+    fn a_temp_directory_bun_cannot_use_goes_back_on_windows() {
+        let here = std::env::temp_dir().into_os_string();
+        let gone = std::env::temp_dir().join(format!("bunto-no-such-dir-{}", std::process::id())).into_os_string();
+        assert!(temp_is_usable(|_| Some(here.clone())));
+        assert_eq!(temp_is_usable(|_| Some(gone.clone())), !cfg!(windows));
+        assert_eq!(temp_is_usable(|name| (name == "TEMP").then(|| here.clone())), !cfg!(windows));
+        assert_eq!(temp_is_usable(|_| None), !cfg!(windows));
     }
 
     #[test]

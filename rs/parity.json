@@ -47,64 +47,43 @@
    "name": "args: help",
    "args": [
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo",
    "args": [
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version",
    "args": [
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help",
    "args": [
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h",
    "args": [
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version",
    "args": [
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v",
    "args": [
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry",
@@ -159,139 +138,97 @@
    "name": "args: --nope",
    "args": [
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x",
    "args": [
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto auto",
    "args": [
     "auto",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto install",
    "args": [
     "auto",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto i",
    "args": [
     "auto",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto remove",
    "args": [
     "auto",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto r",
    "args": [
     "auto",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto help",
    "args": [
     "auto",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto foo",
    "args": [
     "auto",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto version",
    "args": [
     "auto",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --help",
    "args": [
     "auto",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto -h",
    "args": [
     "auto",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --version",
    "args": [
     "auto",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto -v",
    "args": [
     "auto",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --dry",
@@ -354,140 +291,98 @@
    "args": [
     "auto",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto -x",
    "args": [
     "auto",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install auto",
    "args": [
     "install",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install install",
    "args": [
     "install",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install i",
    "args": [
     "install",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install remove",
    "args": [
     "install",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install r",
    "args": [
     "install",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install help",
    "args": [
     "install",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install foo",
    "args": [
     "install",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install version",
    "args": [
     "install",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --help",
    "args": [
     "install",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install -h",
    "args": [
     "install",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --version",
    "args": [
     "install",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install -v",
    "args": [
     "install",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --dry",
@@ -518,180 +413,126 @@
    "args": [
     "install",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install -r",
    "args": [
     "install",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --install",
    "args": [
     "install",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install -i",
    "args": [
     "install",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --nope",
    "args": [
     "install",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install -x",
    "args": [
     "install",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i auto",
    "args": [
     "i",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i install",
    "args": [
     "i",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i i",
    "args": [
     "i",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i remove",
    "args": [
     "i",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i r",
    "args": [
     "i",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i help",
    "args": [
     "i",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i foo",
    "args": [
     "i",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i version",
    "args": [
     "i",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i --help",
    "args": [
     "i",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i -h",
    "args": [
     "i",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i --version",
    "args": [
     "i",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i -v",
    "args": [
     "i",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i --dry",
@@ -722,180 +563,126 @@
    "args": [
     "i",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i -r",
    "args": [
     "i",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i --install",
    "args": [
     "i",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i -i",
    "args": [
     "i",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i --nope",
    "args": [
     "i",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i -x",
    "args": [
     "i",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove auto",
    "args": [
     "remove",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove install",
    "args": [
     "remove",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove i",
    "args": [
     "remove",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove remove",
    "args": [
     "remove",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove r",
    "args": [
     "remove",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove help",
    "args": [
     "remove",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove foo",
    "args": [
     "remove",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove version",
    "args": [
     "remove",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --help",
    "args": [
     "remove",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -h",
    "args": [
     "remove",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --version",
    "args": [
     "remove",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -v",
    "args": [
     "remove",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --dry",
@@ -926,180 +713,126 @@
    "args": [
     "remove",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -r",
    "args": [
     "remove",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --install",
    "args": [
     "remove",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -i",
    "args": [
     "remove",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --nope",
    "args": [
     "remove",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -x",
    "args": [
     "remove",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r auto",
    "args": [
     "r",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r install",
    "args": [
     "r",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r i",
    "args": [
     "r",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r remove",
    "args": [
     "r",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r r",
    "args": [
     "r",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r help",
    "args": [
     "r",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r foo",
    "args": [
     "r",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r version",
    "args": [
     "r",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --help",
    "args": [
     "r",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -h",
    "args": [
     "r",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --version",
    "args": [
     "r",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -v",
    "args": [
     "r",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --dry",
@@ -1130,1650 +863,1155 @@
    "args": [
     "r",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -r",
    "args": [
     "r",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --install",
    "args": [
     "r",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -i",
    "args": [
     "r",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --nope",
    "args": [
     "r",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -x",
    "args": [
     "r",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help auto",
    "args": [
     "help",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help install",
    "args": [
     "help",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help i",
    "args": [
     "help",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help remove",
    "args": [
     "help",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help r",
    "args": [
     "help",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help help",
    "args": [
     "help",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help foo",
    "args": [
     "help",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help version",
    "args": [
     "help",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --help",
    "args": [
     "help",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -h",
    "args": [
     "help",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --version",
    "args": [
     "help",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -v",
    "args": [
     "help",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --dry",
    "args": [
     "help",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --watch",
    "args": [
     "help",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -w",
    "args": [
     "help",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --remove",
    "args": [
     "help",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -r",
    "args": [
     "help",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --install",
    "args": [
     "help",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -i",
    "args": [
     "help",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --nope",
    "args": [
     "help",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -x",
    "args": [
     "help",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo auto",
    "args": [
     "foo",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo install",
    "args": [
     "foo",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo i",
    "args": [
     "foo",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo remove",
    "args": [
     "foo",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo r",
    "args": [
     "foo",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo help",
    "args": [
     "foo",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo foo",
    "args": [
     "foo",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo version",
    "args": [
     "foo",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --help",
    "args": [
     "foo",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -h",
    "args": [
     "foo",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --version",
    "args": [
     "foo",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -v",
    "args": [
     "foo",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --dry",
    "args": [
     "foo",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --watch",
    "args": [
     "foo",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -w",
    "args": [
     "foo",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --remove",
    "args": [
     "foo",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -r",
    "args": [
     "foo",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --install",
    "args": [
     "foo",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -i",
    "args": [
     "foo",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo --nope",
    "args": [
     "foo",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -x",
    "args": [
     "foo",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version auto",
    "args": [
     "version",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version install",
    "args": [
     "version",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version i",
    "args": [
     "version",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version remove",
    "args": [
     "version",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version r",
    "args": [
     "version",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version help",
    "args": [
     "version",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version foo",
    "args": [
     "version",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version version",
    "args": [
     "version",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --help",
    "args": [
     "version",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -h",
    "args": [
     "version",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --version",
    "args": [
     "version",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -v",
    "args": [
     "version",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --dry",
    "args": [
     "version",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --watch",
    "args": [
     "version",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -w",
    "args": [
     "version",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --remove",
    "args": [
     "version",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -r",
    "args": [
     "version",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --install",
    "args": [
     "version",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -i",
    "args": [
     "version",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --nope",
    "args": [
     "version",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -x",
    "args": [
     "version",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help auto",
    "args": [
     "--help",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help install",
    "args": [
     "--help",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help i",
    "args": [
     "--help",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help remove",
    "args": [
     "--help",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help r",
    "args": [
     "--help",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help help",
    "args": [
     "--help",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help foo",
    "args": [
     "--help",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help version",
    "args": [
     "--help",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --help",
    "args": [
     "--help",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -h",
    "args": [
     "--help",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --version",
    "args": [
     "--help",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -v",
    "args": [
     "--help",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --dry",
    "args": [
     "--help",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --watch",
    "args": [
     "--help",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -w",
    "args": [
     "--help",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --remove",
    "args": [
     "--help",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -r",
    "args": [
     "--help",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --install",
    "args": [
     "--help",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -i",
    "args": [
     "--help",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --nope",
    "args": [
     "--help",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -x",
    "args": [
     "--help",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h auto",
    "args": [
     "-h",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h install",
    "args": [
     "-h",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h i",
    "args": [
     "-h",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h remove",
    "args": [
     "-h",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h r",
    "args": [
     "-h",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h help",
    "args": [
     "-h",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h foo",
    "args": [
     "-h",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h version",
    "args": [
     "-h",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --help",
    "args": [
     "-h",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -h",
    "args": [
     "-h",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --version",
    "args": [
     "-h",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -v",
    "args": [
     "-h",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --dry",
    "args": [
     "-h",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --watch",
    "args": [
     "-h",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -w",
    "args": [
     "-h",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --remove",
    "args": [
     "-h",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -r",
    "args": [
     "-h",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --install",
    "args": [
     "-h",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -i",
    "args": [
     "-h",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --nope",
    "args": [
     "-h",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -x",
    "args": [
     "-h",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version auto",
    "args": [
     "--version",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version install",
    "args": [
     "--version",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version i",
    "args": [
     "--version",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version remove",
    "args": [
     "--version",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version r",
    "args": [
     "--version",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version help",
    "args": [
     "--version",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version foo",
    "args": [
     "--version",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version version",
    "args": [
     "--version",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --help",
    "args": [
     "--version",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -h",
    "args": [
     "--version",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --version",
    "args": [
     "--version",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -v",
    "args": [
     "--version",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --dry",
    "args": [
     "--version",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --watch",
    "args": [
     "--version",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -w",
    "args": [
     "--version",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --remove",
    "args": [
     "--version",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -r",
    "args": [
     "--version",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --install",
    "args": [
     "--version",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -i",
    "args": [
     "--version",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --nope",
    "args": [
     "--version",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -x",
    "args": [
     "--version",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v auto",
    "args": [
     "-v",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v install",
    "args": [
     "-v",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v i",
    "args": [
     "-v",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v remove",
    "args": [
     "-v",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v r",
    "args": [
     "-v",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v help",
    "args": [
     "-v",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v foo",
    "args": [
     "-v",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v version",
    "args": [
     "-v",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --help",
    "args": [
     "-v",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -h",
    "args": [
     "-v",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --version",
    "args": [
     "-v",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -v",
    "args": [
     "-v",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --dry",
    "args": [
     "-v",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --watch",
    "args": [
     "-v",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -w",
    "args": [
     "-v",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --remove",
    "args": [
     "-v",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -r",
    "args": [
     "-v",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --install",
    "args": [
     "-v",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -i",
    "args": [
     "-v",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v --nope",
    "args": [
     "-v",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -x",
    "args": [
     "-v",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry auto",
    "args": [
     "--dry",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry install",
    "args": [
     "--dry",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry i",
    "args": [
     "--dry",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry remove",
    "args": [
     "--dry",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry r",
    "args": [
     "--dry",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry help",
    "args": [
     "--dry",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry foo",
    "args": [
     "--dry",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry version",
    "args": [
     "--dry",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry --help",
    "args": [
     "--dry",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry -h",
    "args": [
     "--dry",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry --version",
    "args": [
     "--dry",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry -v",
    "args": [
     "--dry",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry --dry",
@@ -2836,140 +2074,98 @@
    "args": [
     "--dry",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry -x",
    "args": [
     "--dry",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch auto",
    "args": [
     "--watch",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch install",
    "args": [
     "--watch",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch i",
    "args": [
     "--watch",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch remove",
    "args": [
     "--watch",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch r",
    "args": [
     "--watch",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch help",
    "args": [
     "--watch",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch foo",
    "args": [
     "--watch",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch version",
    "args": [
     "--watch",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch --help",
    "args": [
     "--watch",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch -h",
    "args": [
     "--watch",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch --version",
    "args": [
     "--watch",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch -v",
    "args": [
     "--watch",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch --dry",
@@ -3032,140 +2228,98 @@
    "args": [
     "--watch",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch -x",
    "args": [
     "--watch",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w auto",
    "args": [
     "-w",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w install",
    "args": [
     "-w",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w i",
    "args": [
     "-w",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w remove",
    "args": [
     "-w",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w r",
    "args": [
     "-w",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w help",
    "args": [
     "-w",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w foo",
    "args": [
     "-w",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w version",
    "args": [
     "-w",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w --help",
    "args": [
     "-w",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w -h",
    "args": [
     "-w",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w --version",
    "args": [
     "-w",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w -v",
    "args": [
     "-w",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w --dry",
@@ -3228,140 +2382,98 @@
    "args": [
     "-w",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w -x",
    "args": [
     "-w",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove auto",
    "args": [
     "--remove",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove install",
    "args": [
     "--remove",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove i",
    "args": [
     "--remove",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove remove",
    "args": [
     "--remove",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove r",
    "args": [
     "--remove",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove help",
    "args": [
     "--remove",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove foo",
    "args": [
     "--remove",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove version",
    "args": [
     "--remove",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove --help",
    "args": [
     "--remove",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove -h",
    "args": [
     "--remove",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove --version",
    "args": [
     "--remove",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove -v",
    "args": [
     "--remove",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove --dry",
@@ -3424,140 +2536,98 @@
    "args": [
     "--remove",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove -x",
    "args": [
     "--remove",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r auto",
    "args": [
     "-r",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r install",
    "args": [
     "-r",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r i",
    "args": [
     "-r",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r remove",
    "args": [
     "-r",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r r",
    "args": [
     "-r",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r help",
    "args": [
     "-r",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r foo",
    "args": [
     "-r",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r version",
    "args": [
     "-r",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r --help",
    "args": [
     "-r",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r -h",
    "args": [
     "-r",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r --version",
    "args": [
     "-r",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r -v",
    "args": [
     "-r",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r --dry",
@@ -3620,140 +2690,98 @@
    "args": [
     "-r",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r -x",
    "args": [
     "-r",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install auto",
    "args": [
     "--install",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install install",
    "args": [
     "--install",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install i",
    "args": [
     "--install",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install remove",
    "args": [
     "--install",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install r",
    "args": [
     "--install",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install help",
    "args": [
     "--install",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install foo",
    "args": [
     "--install",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install version",
    "args": [
     "--install",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install --help",
    "args": [
     "--install",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install -h",
    "args": [
     "--install",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install --version",
    "args": [
     "--install",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install -v",
    "args": [
     "--install",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install --dry",
@@ -3816,140 +2844,98 @@
    "args": [
     "--install",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install -x",
    "args": [
     "--install",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i auto",
    "args": [
     "-i",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i install",
    "args": [
     "-i",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i i",
    "args": [
     "-i",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i remove",
    "args": [
     "-i",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i r",
    "args": [
     "-i",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i help",
    "args": [
     "-i",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i foo",
    "args": [
     "-i",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i version",
    "args": [
     "-i",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --help",
    "args": [
     "-i",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -h",
    "args": [
     "-i",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --version",
    "args": [
     "-i",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -v",
    "args": [
     "-i",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --dry",
@@ -4012,440 +2998,308 @@
    "args": [
     "-i",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -x",
    "args": [
     "-i",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope auto",
    "args": [
     "--nope",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope install",
    "args": [
     "--nope",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope i",
    "args": [
     "--nope",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope remove",
    "args": [
     "--nope",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope r",
    "args": [
     "--nope",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope help",
    "args": [
     "--nope",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope foo",
    "args": [
     "--nope",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope version",
    "args": [
     "--nope",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --help",
    "args": [
     "--nope",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -h",
    "args": [
     "--nope",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --version",
    "args": [
     "--nope",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -v",
    "args": [
     "--nope",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --dry",
    "args": [
     "--nope",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --watch",
    "args": [
     "--nope",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -w",
    "args": [
     "--nope",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --remove",
    "args": [
     "--nope",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -r",
    "args": [
     "--nope",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --install",
    "args": [
     "--nope",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -i",
    "args": [
     "--nope",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --nope",
    "args": [
     "--nope",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -x",
    "args": [
     "--nope",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x auto",
    "args": [
     "-x",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x install",
    "args": [
     "-x",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x i",
    "args": [
     "-x",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x remove",
    "args": [
     "-x",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x r",
    "args": [
     "-x",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x help",
    "args": [
     "-x",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x foo",
    "args": [
     "-x",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x version",
    "args": [
     "-x",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --help",
    "args": [
     "-x",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -h",
    "args": [
     "-x",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --version",
    "args": [
     "-x",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -v",
    "args": [
     "-x",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --dry",
    "args": [
     "-x",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --watch",
    "args": [
     "-x",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -w",
    "args": [
     "-x",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --remove",
    "args": [
     "-x",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -r",
    "args": [
     "-x",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --install",
    "args": [
     "-x",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -i",
    "args": [
     "-x",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --nope",
    "args": [
     "-x",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -x",
    "args": [
     "-x",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w --nope -q --remove",
@@ -4454,10 +3308,7 @@
     "--nope",
     "-q",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -q --version",
@@ -4465,10 +3316,7 @@
     "version",
     "-q",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q --help dry help",
@@ -4477,10 +3325,7 @@
     "--help",
     "dry",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h -q -q",
@@ -4488,10 +3333,7 @@
     "h",
     "-q",
     "-q"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install -v r",
@@ -4499,10 +3341,7 @@
     "install",
     "-v",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i x1 --nope v",
@@ -4511,10 +3350,7 @@
     "x1",
     "--nope",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -x -r",
@@ -4522,10 +3358,7 @@
     "remove",
     "-x",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help v watch",
@@ -4533,10 +3366,7 @@
     "--help",
     "v",
     "watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w foo help",
@@ -4544,10 +3374,7 @@
     "-w",
     "foo",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --watch -w",
@@ -4555,10 +3382,7 @@
     "--help",
     "--watch",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: dry -w -w",
@@ -4566,10 +3390,7 @@
     "dry",
     "-w",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --auto -w dry -h i",
@@ -4579,10 +3400,7 @@
     "dry",
     "-h",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --auto -w",
@@ -4590,10 +3408,7 @@
     "remove",
     "--auto",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -x x1",
@@ -4601,10 +3416,7 @@
     "-i",
     "-x",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --install -h watch x1",
@@ -4614,10 +3426,7 @@
     "-h",
     "watch",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove version watch foo",
@@ -4626,10 +3435,7 @@
     "version",
     "watch",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x v --dry --nope --help",
@@ -4639,10 +3445,7 @@
     "--dry",
     "--nope",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch -w --version",
@@ -4650,10 +3453,7 @@
     "watch",
     "-w",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install --install -r -x",
@@ -4662,10 +3462,7 @@
     "--install",
     "-r",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --watch --version",
@@ -4673,10 +3470,7 @@
     "-x",
     "--watch",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --help --nope watch",
@@ -4685,10 +3479,7 @@
     "--help",
     "--nope",
     "watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove v foo remove foo",
@@ -4698,10 +3489,7 @@
     "foo",
     "remove",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install -x --watch --remove",
@@ -4710,10 +3498,7 @@
     "-x",
     "--watch",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help dry --remove watch",
@@ -4722,10 +3507,7 @@
     "dry",
     "--remove",
     "watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry dry -q x1",
@@ -4734,10 +3516,7 @@
     "dry",
     "-q",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch install foo -q",
@@ -4746,10 +3525,7 @@
     "install",
     "foo",
     "-q"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h --version auto",
@@ -4757,10 +3533,7 @@
     "h",
     "--version",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --watch v v i",
@@ -4770,10 +3543,7 @@
     "v",
     "v",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto watch -x -i version",
@@ -4783,10 +3553,7 @@
     "-x",
     "-i",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h --remove -q",
@@ -4794,10 +3561,7 @@
     "h",
     "--remove",
     "-q"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch foo -q --remove",
@@ -4806,10 +3570,7 @@
     "foo",
     "-q",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h r help",
@@ -4817,10 +3578,7 @@
     "-h",
     "r",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r --remove --nope v",
@@ -4829,10 +3587,7 @@
     "--remove",
     "--nope",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope foo watch",
@@ -4840,10 +3595,7 @@
     "--nope",
     "foo",
     "watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -v install r",
@@ -4852,10 +3604,7 @@
     "-v",
     "install",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h dry -x h -i",
@@ -4865,10 +3614,7 @@
     "-x",
     "h",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --auto v h -r -v",
@@ -4878,10 +3624,7 @@
     "h",
     "-r",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q install version x1 --install",
@@ -4891,10 +3634,7 @@
     "version",
     "x1",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -w help",
@@ -4902,10 +3642,7 @@
     "-i",
     "-w",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -x -w foo foo",
@@ -4915,10 +3652,7 @@
     "-w",
     "foo",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -h -h",
@@ -4926,10 +3660,7 @@
     "--help",
     "-h",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove --help dry --auto",
@@ -4938,10 +3669,7 @@
     "--help",
     "dry",
     "--auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -x -w",
@@ -4949,10 +3677,7 @@
     "help",
     "-x",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry version -q --version",
@@ -4961,10 +3686,7 @@
     "version",
     "-q",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 --watch v help remove",
@@ -4974,10 +3696,7 @@
     "v",
     "help",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope x1 r",
@@ -4985,10 +3704,7 @@
     "--nope",
     "x1",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h h r install",
@@ -4997,10 +3713,7 @@
     "h",
     "r",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 i v --help",
@@ -5009,10 +3722,7 @@
     "i",
     "v",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help h --dry --watch",
@@ -5021,10 +3731,7 @@
     "h",
     "--dry",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --install -i watch",
@@ -5032,10 +3739,7 @@
     "--install",
     "-i",
     "watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q --remove install -v --remove",
@@ -5045,10 +3749,7 @@
     "install",
     "-v",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x install h --help version",
@@ -5058,10 +3759,7 @@
     "h",
     "--help",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h install v",
@@ -5069,10 +3767,7 @@
     "h",
     "install",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h r --auto -x --auto",
@@ -5082,10 +3777,7 @@
     "--auto",
     "-x",
     "--auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove install install",
@@ -5093,10 +3785,7 @@
     "remove",
     "install",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r help -v",
@@ -5104,10 +3793,7 @@
     "-r",
     "help",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version --watch dry r",
@@ -5116,10 +3802,7 @@
     "--watch",
     "dry",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h --help foo",
@@ -5127,10 +3810,7 @@
     "h",
     "--help",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --auto x1 -h",
@@ -5138,10 +3818,7 @@
     "--auto",
     "x1",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope -q -v",
@@ -5149,10 +3826,7 @@
     "--nope",
     "-q",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto install remove",
@@ -5160,10 +3834,7 @@
     "auto",
     "install",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 --watch --install --help",
@@ -5172,10 +3843,7 @@
     "--watch",
     "--install",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove v -q",
@@ -5183,10 +3851,7 @@
     "remove",
     "v",
     "-q"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch h -h",
@@ -5194,10 +3859,7 @@
     "--watch",
     "h",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help i r",
@@ -5205,10 +3867,7 @@
     "--help",
     "i",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --install -x -w",
@@ -5217,10 +3876,7 @@
     "--install",
     "-x",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q -v i",
@@ -5228,10 +3884,7 @@
     "-q",
     "-v",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -r -x",
@@ -5239,10 +3892,7 @@
     "r",
     "-r",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --install watch -w",
@@ -5251,10 +3901,7 @@
     "--install",
     "watch",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help help version dry",
@@ -5263,10 +3910,7 @@
     "help",
     "version",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h foo --install",
@@ -5274,10 +3918,7 @@
     "h",
     "foo",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -i --nope v",
@@ -5286,10 +3927,7 @@
     "-i",
     "--nope",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -v -q --watch dry",
@@ -5299,10 +3937,7 @@
     "-q",
     "--watch",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --version help",
@@ -5310,10 +3945,7 @@
     "-x",
     "--version",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install x1 -h",
@@ -5321,10 +3953,7 @@
     "install",
     "x1",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --remove --install v",
@@ -5333,10 +3962,7 @@
     "--remove",
     "--install",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r auto -i --nope",
@@ -5345,10 +3971,7 @@
     "auto",
     "-i",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --remove remove h",
@@ -5357,10 +3980,7 @@
     "--remove",
     "remove",
     "h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch --version install remove dry",
@@ -5370,10 +3990,7 @@
     "install",
     "remove",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope remove x1",
@@ -5381,10 +3998,7 @@
     "--nope",
     "remove",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo -h --help",
@@ -5392,10 +4006,7 @@
     "foo",
     "-h",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --dry x1",
@@ -5403,10 +4014,7 @@
     "install",
     "--dry",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch -x dry",
@@ -5414,10 +4022,7 @@
     "watch",
     "-x",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: dry auto version -x",
@@ -5426,10 +4031,7 @@
     "auto",
     "version",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: v dry --dry -x",
@@ -5438,10 +4040,7 @@
     "dry",
     "--dry",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --nope r -w",
@@ -5450,10 +4049,7 @@
     "--nope",
     "r",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help version auto foo",
@@ -5462,10 +4058,7 @@
     "version",
     "auto",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help -v -q foo -x",
@@ -5475,10 +4068,7 @@
     "-q",
     "foo",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h -r --remove watch h",
@@ -5488,10 +4078,7 @@
     "--remove",
     "watch",
     "h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch version h foo x1",
@@ -5501,10 +4088,7 @@
     "h",
     "foo",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install help v",
@@ -5512,10 +4096,7 @@
     "install",
     "help",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version --help --version foo -w",
@@ -5525,10 +4106,7 @@
     "--version",
     "foo",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope auto foo --help v",
@@ -5538,10 +4116,7 @@
     "foo",
     "--help",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --auto --help help",
@@ -5549,10 +4124,7 @@
     "--auto",
     "--help",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v remove auto auto",
@@ -5561,10 +4133,7 @@
     "remove",
     "auto",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove install --remove -r",
@@ -5573,10 +4142,7 @@
     "install",
     "--remove",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q version --nope",
@@ -5584,10 +4150,7 @@
     "-q",
     "version",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto r -r",
@@ -5595,10 +4158,7 @@
     "auto",
     "r",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --help --version --remove",
@@ -5607,10 +4167,7 @@
     "--help",
     "--version",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --help --version",
@@ -5618,10 +4175,7 @@
     "r",
     "--help",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: v help auto h --version",
@@ -5631,10 +4185,7 @@
     "auto",
     "h",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -h -q dry",
@@ -5643,10 +4194,7 @@
     "-h",
     "-q",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope h --help",
@@ -5654,10 +4202,7 @@
     "--nope",
     "h",
     "--help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help foo --auto -v",
@@ -5666,10 +4211,7 @@
     "foo",
     "--auto",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r r r -w foo",
@@ -5679,10 +4221,7 @@
     "r",
     "-w",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version -v --version",
@@ -5690,10 +4229,7 @@
     "--version",
     "-v",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version -v -v help",
@@ -5702,10 +4238,7 @@
     "-v",
     "-v",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q -i r -v x1",
@@ -5715,10 +4248,7 @@
     "r",
     "-v",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 x1 r dry",
@@ -5727,10 +4257,7 @@
     "x1",
     "r",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h h h version",
@@ -5739,10 +4266,7 @@
     "h",
     "h",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version i --version",
@@ -5750,10 +4274,7 @@
     "version",
     "i",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry --auto foo auto -h",
@@ -5763,10 +4284,7 @@
     "foo",
     "auto",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r i help r -w",
@@ -5776,10 +4294,7 @@
     "help",
     "r",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --install --help remove -r",
@@ -5789,10 +4304,7 @@
     "--help",
     "remove",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q help -i install foo",
@@ -5802,10 +4314,7 @@
     "-i",
     "install",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch install install",
@@ -5813,10 +4322,7 @@
     "watch",
     "install",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove --auto --help r auto",
@@ -5826,10 +4332,7 @@
     "--help",
     "r",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install --dry version dry",
@@ -5838,10 +4341,7 @@
     "--dry",
     "version",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h help --nope --help version",
@@ -5851,10 +4351,7 @@
     "--nope",
     "--help",
     "version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -q v version v",
@@ -5864,10 +4361,7 @@
     "v",
     "version",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help watch -w -r",
@@ -5876,10 +4370,7 @@
     "watch",
     "-w",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --auto -x --install auto",
@@ -5888,10 +4379,7 @@
     "-x",
     "--install",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help watch -i",
@@ -5899,10 +4387,7 @@
     "--help",
     "watch",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -r -h",
@@ -5910,10 +4395,7 @@
     "-x",
     "-r",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 v -v",
@@ -5921,10 +4403,7 @@
     "x1",
     "v",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r --version dry",
@@ -5932,10 +4411,7 @@
     "-r",
     "--version",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch --nope --remove",
@@ -5943,10 +4419,7 @@
     "watch",
     "--nope",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -x --help auto",
@@ -5955,10 +4428,7 @@
     "-x",
     "--help",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --install --dry",
@@ -5966,10 +4436,7 @@
     "help",
     "--install",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q dry -i --install",
@@ -5978,10 +4445,7 @@
     "dry",
     "-i",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install version --auto version -v",
@@ -5991,10 +4455,7 @@
     "--auto",
     "version",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 --auto r help",
@@ -6003,10 +4464,7 @@
     "--auto",
     "r",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --watch -v -x --nope",
@@ -6016,10 +4474,7 @@
     "-v",
     "-x",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --dry -h auto --version",
@@ -6029,10 +4484,7 @@
     "-h",
     "auto",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch --remove help x1",
@@ -6041,10 +4493,7 @@
     "--remove",
     "help",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove --watch version -i",
@@ -6053,10 +4502,7 @@
     "--watch",
     "version",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope h version auto -w",
@@ -6066,10 +4512,7 @@
     "version",
     "auto",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h foo r -v",
@@ -6078,10 +4521,7 @@
     "foo",
     "r",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: foo i --auto --nope v",
@@ -6091,10 +4531,7 @@
     "--auto",
     "--nope",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto remove --auto --version --install",
@@ -6104,10 +4541,7 @@
     "--auto",
     "--version",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove watch --help dry",
@@ -6116,10 +4550,7 @@
     "watch",
     "--help",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h i --remove -x --watch",
@@ -6129,10 +4560,7 @@
     "--remove",
     "-x",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: version x1 dry",
@@ -6140,10 +4568,7 @@
     "version",
     "x1",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install install install",
@@ -6151,10 +4576,7 @@
     "install",
     "install",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w --auto help",
@@ -6162,10 +4584,7 @@
     "-w",
     "--auto",
     "help"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h -h auto --remove",
@@ -6174,10 +4593,7 @@
     "-h",
     "auto",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r remove -h",
@@ -6185,10 +4601,7 @@
     "r",
     "remove",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help -q --remove --nope -v",
@@ -6198,10 +4611,7 @@
     "--remove",
     "--nope",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove -q v",
@@ -6209,10 +4619,7 @@
     "--remove",
     "-q",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help v -q -i",
@@ -6221,10 +4628,7 @@
     "v",
     "-q",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove version --auto",
@@ -6232,10 +4636,7 @@
     "--remove",
     "version",
     "--auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch version remove --nope",
@@ -6244,10 +4645,7 @@
     "version",
     "remove",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: v --nope x1",
@@ -6255,10 +4653,7 @@
     "v",
     "--nope",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w r --watch",
@@ -6266,10 +4661,7 @@
     "-w",
     "r",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --remove -h remove auto",
@@ -6279,10 +4671,7 @@
     "-h",
     "remove",
     "auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope --dry v --version -r",
@@ -6292,10 +4681,7 @@
     "v",
     "--version",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help --watch auto --nope h",
@@ -6305,10 +4691,7 @@
     "auto",
     "--nope",
     "h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -h --help -x -h",
@@ -6317,10 +4700,7 @@
     "--help",
     "-x",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: help --remove --nope",
@@ -6328,10 +4708,7 @@
     "help",
     "--remove",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -q --auto r -x",
@@ -6340,10 +4717,7 @@
     "--auto",
     "r",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove h --install --auto",
@@ -6352,10 +4726,7 @@
     "h",
     "--install",
     "--auto"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --auto install install",
@@ -6363,10 +4734,7 @@
     "--auto",
     "install",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: dry -x watch dry --nope",
@@ -6376,10 +4744,7 @@
     "watch",
     "dry",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -w --install --remove --nope",
@@ -6388,10 +4753,7 @@
     "--install",
     "--remove",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch -v -h",
@@ -6399,10 +4761,7 @@
     "watch",
     "-v",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v r -x --watch",
@@ -6411,10 +4770,7 @@
     "r",
     "-x",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: h --nope -q",
@@ -6422,10 +4778,7 @@
     "h",
     "--nope",
     "-q"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v -x remove --remove --version",
@@ -6435,10 +4788,7 @@
     "remove",
     "--remove",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --version auto -r x1",
@@ -6447,10 +4797,7 @@
     "auto",
     "-r",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --help install --version watch",
@@ -6459,10 +4806,7 @@
     "install",
     "--version",
     "watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto -q foo i",
@@ -6471,10 +4815,7 @@
     "-q",
     "foo",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x foo -w",
@@ -6482,10 +4823,7 @@
     "-x",
     "foo",
     "-w"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: install remove --nope --nope",
@@ -6494,10 +4832,7 @@
     "remove",
     "--nope",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: i version --remove",
@@ -6505,10 +4840,7 @@
     "i",
     "version",
     "--remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 x1 --version -r",
@@ -6517,10 +4849,7 @@
     "x1",
     "--version",
     "-r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -r i -i --dry",
@@ -6530,10 +4859,7 @@
     "i",
     "-i",
     "--dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch h --version --version",
@@ -6542,10 +4868,7 @@
     "h",
     "--version",
     "--version"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i --version v",
@@ -6553,10 +4876,7 @@
     "-i",
     "--version",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x r --watch",
@@ -6564,10 +4884,7 @@
     "-x",
     "r",
     "--watch"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r -x -q",
@@ -6575,10 +4892,7 @@
     "r",
     "-x",
     "-q"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --dry --install --nope foo remove",
@@ -6588,10 +4902,7 @@
     "--nope",
     "foo",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --help --nope",
@@ -6599,10 +4910,7 @@
     "auto",
     "--help",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: remove -v x1",
@@ -6610,10 +4918,7 @@
     "remove",
     "-v",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto h --nope --nope",
@@ -6622,10 +4927,7 @@
     "h",
     "--nope",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: watch -r --version --nope",
@@ -6634,10 +4936,7 @@
     "-r",
     "--version",
     "--nope"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove v v r -i",
@@ -6647,10 +4946,7 @@
     "v",
     "r",
     "-i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: r --remove --install remove",
@@ -6659,10 +4955,7 @@
     "--remove",
     "--install",
     "remove"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove --watch --auto dry",
@@ -6671,10 +4964,7 @@
     "--watch",
     "--auto",
     "dry"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 x1 foo",
@@ -6682,10 +4972,7 @@
     "x1",
     "x1",
     "foo"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --remove version auto i",
@@ -6694,10 +4981,7 @@
     "version",
     "auto",
     "i"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x -r version --install",
@@ -6706,10 +4990,7 @@
     "-r",
     "version",
     "--install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i -r i --version v",
@@ -6719,10 +5000,7 @@
     "i",
     "--version",
     "v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --watch -x -x",
@@ -6730,10 +5008,7 @@
     "--watch",
     "-x",
     "-x"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -i r x1 install",
@@ -6742,10 +5017,7 @@
     "r",
     "x1",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -r version install",
@@ -6753,10 +5025,7 @@
     "-r",
     "version",
     "install"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -v v -v",
@@ -6764,10 +5033,7 @@
     "-v",
     "v",
     "-v"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: auto --help -w r",
@@ -6776,10 +5042,7 @@
     "--help",
     "-w",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: x1 v --dry r",
@@ -6788,10 +5051,7 @@
     "v",
     "--dry",
     "r"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: -x --nope --remove -i -h",
@@ -6801,10 +5061,7 @@
     "--remove",
     "-i",
     "-h"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --nope dry --remove h x1",
@@ -6814,10 +5071,7 @@
     "--remove",
     "h",
     "x1"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "args: --no-dry",
@@ -7064,9 +5318,6 @@
    ],
    "env": {
     "BUN_INSTALL": "<HOME>/.bun"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7200,9 +5451,6 @@
     "CI": "true",
     "GITHUB_ACTIONS": "true",
     "COLORTERM": "truecolor"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7211,10 +5459,7 @@
     "i",
     "--help"
    ],
-   "stdin": "y\nanything\n",
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   "stdin": "y\nanything\n"
   },
   {
    "name": "gate: .env that unwraps the help",
@@ -7303,9 +5548,6 @@
    ],
    "files": {
     ".env.production": "YARGS_DISABLE_WRAP=1\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7315,9 +5557,6 @@
    ],
    "files": {
     ".env.test": "YARGS_DISABLE_WRAP=1\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7327,9 +5566,6 @@
    ],
    "files": {
     ".env.example": "YARGS_DISABLE_WRAP=1\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7339,9 +5575,6 @@
    ],
    "files": {
     ".envrc": "YARGS_DISABLE_WRAP=1\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7351,9 +5584,6 @@
    ],
    "files": {
     "env": "YARGS_DISABLE_WRAP=1\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7363,10 +5593,7 @@
    ],
    "setup": [
     "printf 'YARGS_DISABLE_WRAP=1\\n' > <ROOT>/.env"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "gate: bunfig.toml that preloads a script",
@@ -7418,10 +5645,7 @@
    "setup": [
     "printf 'console.log(\"preloaded\")\\n' > <ROOT>/pre.js",
     "printf 'preload = [\"<ROOT>/pre.js\"]\\n' > <ROOT>/bunfig.toml"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "gate: a project's package.json",
@@ -7430,9 +5654,6 @@
    ],
    "files": {
     "package.json": "{\n  \"name\": \"app\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"^4.17.21\"\n  },\n  \"scripts\": {\n    \"build\": \"tsc\"\n  }\n}\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7442,9 +5663,6 @@
    ],
    "files": {
     "package.json": "{ not json\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7454,9 +5672,6 @@
    ],
    "files": {
     "package.json": "{ not json\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7467,9 +5682,6 @@
    "files": {
     "tsconfig.json": "{ not json\n",
     "jsconfig.json": "{ not json\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7481,10 +5693,7 @@
    "setup": [
     "printf '{ not json\\n' > <ROOT>/package.json",
     "printf '{ not json\\n' > <ROOT>/tsconfig.json"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "gate: package.json of another type",
@@ -7494,9 +5703,6 @@
    ],
    "files": {
     "package.json": "{\"type\":\"commonjs\",\"workspaces\":5,\"imports\":3}\n"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7506,9 +5712,6 @@
    ],
    "env": {
     "LANG": "de_DE.UTF-8"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7518,9 +5721,6 @@
    ],
    "env": {
     "LC_ALL": "fr_FR.UTF-8"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7530,9 +5730,6 @@
    ],
    "env": {
     "LC_MESSAGES": "ja_JP"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7542,9 +5739,6 @@
    ],
    "env": {
     "LANGUAGE": "es"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7554,9 +5748,6 @@
    ],
    "env": {
     "LANG": "C.UTF-8"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7566,9 +5757,6 @@
    ],
    "env": {
     "LANG": "POSIX"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7578,9 +5766,6 @@
    ],
    "env": {
     "LC_ALL": "zh_CN:zh"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7591,9 +5776,6 @@
    "env": {
     "LC_ALL": "",
     "LANG": "de_DE.UTF-8"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7628,9 +5810,6 @@
    ],
    "env": {
     "X_PKG": "<ROOT>/pkg"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7645,9 +5824,6 @@
    ],
    "env": {
     "X_PKG": "<ROOT>/pkg"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7732,9 +5908,6 @@
    ],
    "env": {
     "X_PKG": "<ROOT>/pkg"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7814,9 +5987,6 @@
    ],
    "env": {
     "FORCE_COLOR": "1"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7826,9 +5996,6 @@
    ],
    "env": {
     "FORCE_COLOR": "3"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7839,9 +6006,6 @@
    ],
    "env": {
     "NO_COLOR": "1"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    }
   },
   {
@@ -7850,9 +6014,6 @@
     "--help"
    ],
    "tty": "stdout",
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
    }
@@ -7864,9 +6025,6 @@
     "--help"
    ],
    "tty": true,
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
    }
@@ -7877,9 +6035,6 @@
     "help"
    ],
    "tty": "stderr",
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
    }
@@ -7890,9 +6045,6 @@
     "-v"
    ],
    "tty": "stdout",
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
    }
@@ -7983,9 +6135,6 @@
    "env": {
     "X_COLS": "80"
    },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
    }
@@ -8000,9 +6149,6 @@
    "env": {
     "X_COLS": "200"
    },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
    }
@@ -8015,9 +6161,6 @@
    "tty": "stderr",
    "env": {
     "X_COLS": "60"
-   },
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
    },
    "skip": {
     "win32": "a terminal: the runner has none on Windows"
@@ -8407,10 +6550,7 @@
     "cat <ROOT>/bun.log 2> /dev/null || echo 'bun was asked to install or remove nothing'",
     "ls -A",
     "cat package.json packages/sub/package.json"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   },
   {
    "name": "work: the help on a project changes nothing",
@@ -8432,10 +6572,7 @@
     "cat <ROOT>/bun.log 2> /dev/null || echo 'bun was asked to install or remove nothing'",
     "ls -A",
     "cat package.json packages/sub/package.json"
-   ],
-   "handback": {
-    "win32": "every invocation goes back on this system (rs/src/runtime.rs platform_is_proven)"
-   }
+   ]
   }
  ]
 }
