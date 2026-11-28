@@ -88,8 +88,11 @@ fn lexical(path: &Path, cwd: &Path) -> PathBuf {
     out
 }
 
-/// The program bun is found as on PATH, as `js_fallback::run` starts it.
-/// Whether it runs is `bun_runs`'s question.
+/// The program bun is found as on PATH: on Linux and macOS as the `#!` line
+/// of bin/cli.js finds it when `js_fallback::run` starts it; on Windows only
+/// a bun.exe, where the hand-back also takes npm's bun.cmd, so with only a
+/// bun.cmd on PATH every answer goes back. Whether it runs is `bun_runs`'s
+/// question.
 fn bun_on_path() -> bool {
     let Some(path) = std::env::var_os("PATH") else { return false };
     std::env::split_paths(&path).any(|dir| {
@@ -153,8 +156,9 @@ fn bun_version(text: &str) -> Option<(u64, u64, u64)> {
 }
 
 /// Whether the bun that would run bin/cli.js runs, and is one these answers
-/// are bun's for. It is asked for its version, started as `js_fallback::run`
-/// starts it (`bun`, found on PATH), with nothing to read and its output
+/// are bun's for. It is asked for its version, started as `bun` found on
+/// PATH (on Windows a bun.exe; a bun.cmd ahead of it on PATH, which the
+/// hand-back would run, is not asked), with nothing to read and its output
 /// kept here, before anything is printed. A version manager's shim with no
 /// bun behind it (`No version is set for command bun`, exit 126), a bun
 /// built for another system or C library, one that writes anything else,
