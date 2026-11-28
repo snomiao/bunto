@@ -94,7 +94,7 @@ fn executable(path: &Path) -> bool {
 /// The systems where the parity cases have shown the answers to be bun's:
 /// everywhere else every invocation goes back.
 fn platform_is_proven() -> bool {
-    cfg!(target_os = "linux")
+    cfg!(any(target_os = "linux", target_os = "macos"))
 }
 
 impl Runtime {

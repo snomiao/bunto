@@ -54,7 +54,7 @@ fn without_bun_it_hands_back() {
     assert!(!String::from_utf8_lossy(&run.stdout).contains("bunto <cmd>"));
 }
 
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os = "macos"))]
 #[test]
 fn with_a_bun_on_path_it_answers() {
     use std::os::unix::fs::PermissionsExt;
